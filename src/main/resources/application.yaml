@@ -1,0 +1,22 @@
+#spring.datasource.url=jdbc:postgresql://localhost:5432/detective
+#spring.datasource.username=postgres
+#spring.datasource.password=13221322q
+#spring.jpa.hibernate.ddl-auto=validate
+#spring.jpa.show-sql=true
+#spring.flyway.url=
+#
+#
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/detective
+    username: postgres
+    password: 13221322q
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  flyway:
+    url: jdbc:postgresql://localhost:5432/detective
+    user: postgres
+    password: 13221322q
