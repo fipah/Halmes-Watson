@@ -1,14 +1,14 @@
 package Halms.Watson.controller;
 
+import Halms.Watson.model.Role;
 import Halms.Watson.model.entity.Users;
-import Halms.Watson.security.HolmesUserDetails;
+import Halms.Watson.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +27,7 @@ public class HomeController {
 
 
     private final PasswordEncoder passwordEncoder;
-    private final UserDetailsManager userDetailsManager;
+    private final UserRepository userRepository;
 
     @GetMapping
     public String openIndex(){
@@ -60,11 +60,29 @@ public class HomeController {
             MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
     )
     public void addUser(@RequestParam Map<String, String> body) {
-        Users user = new Users();
-        HolmesUserDetails holmesUserDetails = new HolmesUserDetails(user);
-        user.setUsername(body.get("username"));
-        user.setPassword(passwordEncoder.encode(body.get("password")));
-        userDetailsManager.createUser(holmesUserDetails);
+        if (userRepository.findByUsername(body.get("username")).isEmpty()) {
+            var user = new Users();
+            user.setUsername(body.get("username"));
+            user.setPassword(passwordEncoder.encode(body.get("password")));
+            user.setRole(Role.ROLE_USER);
+            userRepository.save(user);
+        }
+    }
+
+
+    @PostMapping(
+            value = "/register/employee",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = {
+            MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
+    )
+    public void addEmployee(@RequestParam Map<String, String> body) {
+        if (userRepository.findByUsername(body.get("username")).isEmpty()) {
+            var user = new Users();
+            user.setUsername(body.get("username"));
+            user.setPassword(passwordEncoder.encode(body.get("password")));
+            user.setRole(Role.ROLE_EMPLOYEE);
+            userRepository.save(user);
+        }
     }
     private String getErrorMessage(HttpServletRequest request, String key) {
         Exception exception = (Exception) request.getSession().getAttribute(key);
@@ -78,5 +96,7 @@ public class HomeController {
         }
         return error;
     }
+
+
 
 }

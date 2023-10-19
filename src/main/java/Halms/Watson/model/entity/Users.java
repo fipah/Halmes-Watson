@@ -1,14 +1,14 @@
 package Halms.Watson.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import Halms.Watson.model.Role;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,4 +23,11 @@ public class Users {
     String username;
 
     String password;
+
+//    @ElementCollection
+//    @JoinTable(name = "authorities", joinColumns = {@JoinColumn(name = "username")})// use default table (PERSON_NICKNAMES)
+//            @Column(name = "authority")
+@Enumerated(EnumType.STRING)
+@Column(name = "role")
+private Role role;
 }

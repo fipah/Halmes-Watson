@@ -1,7 +1,5 @@
 package Halms.Watson.configuration;
 
-import Halms.Watson.model.entity.Users;
-import Halms.Watson.security.HolmesUserDetails;
 import Halms.Watson.security.HolmesUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -11,10 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
@@ -34,6 +30,9 @@ public class WebSecurityConfig {
                         request
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers("/register").permitAll()
+                                .requestMatchers("/register/employee").hasAnyRole("admin")
+                                .requestMatchers("/*.jpg").permitAll()
+                                .requestMatchers("/v1/users/create-users").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
@@ -53,18 +52,24 @@ public class WebSecurityConfig {
         return authProvider;
     }
 
-    @Bean UserDetailsManager userDetailsService() {
-        UserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
-        try {
-            Users users = new Users();
-            users.setUsername("admin");
-            users.setPassword(bCryptPasswordEncoder().encode("agoga1322"));
-            HolmesUserDetails holmesUserDetails = new HolmesUserDetails(users);
-            userDetailsManager.createUser(holmesUserDetails);}
-        catch (Exception e) {
-            System.out.println(e);
-        }
-        return userDetailsManager;
+//    @Bean UserDetailsManager userDetailsService() {
+//        UserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
+//        try {
+//            Users users = new Users();
+//            users.setUsername("admin");
+//            users.setPassword(bCryptPasswordEncoder().encode("agoga1322"));
+//            users.setRole(Role.ROLE_ADMIN);
+//            HolmesUserDetails holmesUserDetails = new HolmesUserDetails(users);
+//            userDetailsManager.createUser(holmesUserDetails);
+//    }
+//        catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        return userDetailsManager;
+//    }
+
+    public void configureGlobal(AuthenticationManagerBuilder auth, HolmesUserDetailsService userService, PasswordEncoder passwordEncoder) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
 
 //    @Bean

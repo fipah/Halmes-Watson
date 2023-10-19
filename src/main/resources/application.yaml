@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/detective
     username: postgres
-    password: 123
+    password: 13221322q
   jpa:
     hibernate:
       ddl-auto: validate
@@ -10,4 +10,4 @@ spring:
   flyway:
     url: jdbc:postgresql://localhost:5432/detective
     user: postgres
-    password: 123
+    password: 13221322q
