@@ -44,6 +44,16 @@ public class HomeController {
         return "register";
     }
 
+    @GetMapping("/orders")
+    public String orders() {
+        return "orders";
+    }
+
+    @GetMapping("/order-submit")
+    public String orderSubmit() {
+        return "order-submit";
+    }
+
     @PostMapping(
             value = "/register",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = {
