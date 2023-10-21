@@ -11,12 +11,12 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <form th:action="@{'/client-order'}" method="get">
+                    <form th:action="@{'/orders/client-order'}" method="get">
                         <div class="form-group">
                             <button class="btn btn-primary">Заказы</button>
                         </div>
                     </form>
-                    <form th:action="@{'/order-submit'}" method="get">
+                    <form th:action="@{'orders/order-submit'}" method="get">
                         <div class="form-group">
                             <button class="btn btn-primary">Заказать услугу</button>
                         </div>

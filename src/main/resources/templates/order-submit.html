@@ -8,14 +8,14 @@
 <body>
 <div class="container">
     <div class="row">
-        <form th:action="@{'/v1/orders/order-submit'}" method="post">
+        <form th:action="@{'/orders/order-submit-action'}" th:object="${client}" method="post">
             <div class="form-group">
                 <label class="form-label">Ваше имя: </label>
-                <input type="text" class="form-control" name="client-name">
+                <input type="text" class="form-control" th:field="*{clientName}">
                 <label class="form-label">Стоимость: </label>
-                <input type="text" class="form-control" name="order-price">
+                <input type="text" class="form-control" th:field="*{price}">
                 <label class="form-label">Описание заказа: </label>
-                <input type="text" class="form-control" name="order-description">
+                <input type="text" class="form-control" th:field="*{description}">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary">Add Product</button>

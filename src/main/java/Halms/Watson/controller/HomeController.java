@@ -44,15 +44,15 @@ public class HomeController {
         return "register";
     }
 
-    @GetMapping("/orders")
-    public String orders() {
-        return "client-order";
-    }
+//    @GetMapping("/orders")
+//    public String orders() {
+//        return "client-order";
+//    }
 
-    @GetMapping("/order-submit")
-    public String orderSubmit() {
-        return "order-submit";
-    }
+//    @GetMapping("/order-submit")
+//    public String orderSubmit() {
+//        return "order-submit";
+//    }
 
     @PostMapping(
             value = "/register",

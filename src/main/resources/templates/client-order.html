@@ -8,11 +8,11 @@
 <body>
 <div class="container">
   <div class="row">
-      <div class="form-group">
-          <p> Имя клиента: <span th:text="${orders.clientName}"></span></p>
-          <p> Имя клиента: <span th:text="${orders.description}"></span></p>
-          <p> Имя клиента: <span th:text="${orders.price}"></span></p>
-          <p> Имя клиента: <span th:text="${orders.status}"></span></p>
+      <div th:each="order: ${orders}" class="form-group">
+          <p> Имя клиента: <span th:text="${order.clientName}"></span></p>
+          <p> Имя клиента: <span th:text="${order.description}"></span></p>
+          <p> Имя клиента: <span th:text="${order.price}"></span></p>
+          <p> Имя клиента: <span th:text="${order.status}"></span></p>
       </div>
   </div>
 </div>

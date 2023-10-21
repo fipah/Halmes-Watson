@@ -33,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
         Orders orders = new Orders();
         OrderStatus statusByCode = orderStatusRepository.getStatusByCode(OrderStatusEnum.NEW);
         orders.setOrderStatus(statusByCode);
-        orders.setClientName(clients.getName());
+        orders.setClientName(clients.getClientName());
         orders.setPrice(clients.getPrice());
         orders.setDescription(clients.getDescription());
         orderRepository.save(orders);
@@ -58,10 +58,12 @@ public class OrderServiceImpl implements OrderService {
         dto.setStatus(orders.getOrderStatus().getCode());
         dto.setClientName(orders.getClientName());
         EmployeeDTO employeeDTO = new EmployeeDTO();
-        employeeDTO.setId(orders.getEmployee().getId());
-        employeeDTO.setName(orders.getEmployee().getName());
-        employeeDTO.setAvatarUrl(orders.getEmployee().getAvatarUrl());
-        dto.setAssignedEmployee(employeeDTO);
+        if (Objects.nonNull(orders.getEmployee())) {
+            employeeDTO.setId(orders.getEmployee().getId());
+            employeeDTO.setName(orders.getEmployee().getName());
+            employeeDTO.setAvatarUrl(orders.getEmployee().getAvatarUrl());
+            dto.setAssignedEmployee(employeeDTO);
+        }
         dto.setCompletedDate(orders.getCompletedDate());
         dto.setCreatedDate(orders.getCreatedDate());
         return dto;

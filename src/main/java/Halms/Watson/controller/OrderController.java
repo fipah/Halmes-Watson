@@ -7,21 +7,43 @@ import Halms.Watson.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 // имя клиента, описание заказа, стоимость, дата создания, дата выполнения, имя сотрудника
 @Controller
-@RequestMapping(value = "/v1/orders")
+@RequestMapping(value = "/orders")
 @RequiredArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping
-    void CreateOrder (@RequestBody Clients client){
+    @RequestMapping(value = "/order-submit-action")
+    public String CreateOrder ( @ModelAttribute("client") Clients client, BindingResult bindingResult, ModelMap model){
+        if (bindingResult.hasErrors()) {
+            return "order-submit";
+        }
         orderService.createOrder(client);
+        model.clear();
+        return "redirect:client-order";
+    }
+
+    @RequestMapping("/order-submit")
+    public String getOrderSubmitPage(ModelMap model) {
+        model.addAttribute("client", new Clients());
+        return "order-submit";
+    }
+
+
+    @RequestMapping("/client-order")
+    String getClientOrders(Model model ) {
+        List<OrderDTO> allOrders = orderService.getAllOrders();
+        model.addAttribute("orders", allOrders);
+        return "client-order";
     }
 
 
