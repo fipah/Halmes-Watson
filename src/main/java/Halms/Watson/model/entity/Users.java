@@ -6,9 +6,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.List;
 
 @Entity
 @Getter
@@ -24,10 +21,12 @@ public class Users {
 
     String password;
 
-//    @ElementCollection
+    //    @ElementCollection
 //    @JoinTable(name = "authorities", joinColumns = {@JoinColumn(name = "username")})// use default table (PERSON_NICKNAMES)
 //            @Column(name = "authority")
-@Enumerated(EnumType.STRING)
-@Column(name = "role")
-private Role role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+
+    private String name;
 }

@@ -1,0 +1,1 @@
+alter table users add column name varchar not null default '';

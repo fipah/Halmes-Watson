@@ -18,4 +18,5 @@ public interface OrderService {
 
     Orders completeOrder(Long id);
 
+    List<OrderDTO> getAllOrdersByUser();
 }

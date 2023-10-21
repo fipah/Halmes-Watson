@@ -34,4 +34,8 @@ public class Orders {
     OffsetDateTime createdDate = OffsetDateTime.now();
 
     OffsetDateTime completedDate;
+
+    @ManyToOne
+
+    Users user;
 }

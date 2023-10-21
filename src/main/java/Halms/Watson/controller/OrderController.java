@@ -5,7 +5,9 @@ import Halms.Watson.model.dto.OrderDTO;
 import Halms.Watson.model.entity.Users;
 import Halms.Watson.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -41,7 +43,7 @@ public class OrderController {
 
     @RequestMapping("/client-order")
     String getClientOrders(Model model ) {
-        List<OrderDTO> allOrders = orderService.getAllOrders();
+        List<OrderDTO> allOrders = orderService.getAllOrdersByUser();
         model.addAttribute("orders", allOrders);
         return "client-order";
     }
