@@ -46,7 +46,7 @@ public class HomeController {
 
     @GetMapping("/orders")
     public String orders() {
-        return "orders";
+        return "client-order";
     }
 
     @GetMapping("/order-submit")

@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <form th:action="@{'/orders'}" method="get">
+                    <form th:action="@{'/client-order'}" method="get">
                         <div class="form-group">
                             <button class="btn btn-primary">Заказы</button>
                         </div>
@@ -21,7 +21,18 @@
                             <button class="btn btn-primary">Заказать услугу</button>
                         </div>
                     </form>
+                    <form th:action="@{'/logout'}" method="post">
+                    <div class="form-group">
+                        <button class="btn btn-primary">logout</button>
+                    </div>
+                </form>
                     <img src="/jopa.jpg" height="260" width="260">
+                    <form th:action="@{'/login'}" method="get">
+                        <div class="form-group">
+                            <button class="btn btn-primary">Войти</button>
+                        </div>
+                    </form>
+                    <div th:action="@{'/logout'}" method="post"></div>
                 </div>
             </div>
         </div>
