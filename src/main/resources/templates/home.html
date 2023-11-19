@@ -1,43 +1,1151 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-</head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <form th:action="@{'/orders/client-order'}" method="get">
-                        <div class="form-group">
-                            <button class="btn btn-primary">Заказы</button>
+    <head>
+        <meta charset="utf-8" />
+        <title>Mito - Bootstrap5 Responsive Landing</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Premium Bootstrap v5.1.3 Landing Page Template" />
+        <meta name="keywords" content="bootstrap v5.1.3, premium, marketing, multipurpose" />
+        <meta content="Themesdesign" name="author" />
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+        <!-- fevicon -->
+        <link rel="shortcut icon" href="../content/images/favicon.ico">
+
+        <!-- Bootstrap css -->
+        <link rel="stylesheet" href="../content/css/bootstrap.min.css" type="text/css" />
+
+        <!-- animation -->
+        <link rel="stylesheet" href="../content/css/aos.css" />
+
+        <!-- slider -->
+        <link rel="stylesheet" href="../content/css/swiper-bundle.min.css" />
+
+        <!-- Icon -->
+        <link rel="stylesheet" href="../content/css/materialdesignicons.min.css" type="text/css" />
+
+        <link rel="stylesheet" href="../content/css/boxicons.min.css" type="text/css" />
+
+        <!-- css -->
+        <link rel="stylesheet" href="../content/css/style.min.css" type="text/css" />
+
+
+    </head>
+    <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="71">
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-white navbar-custom nav-light sticky" id="navbar">
+            <div class="container">
+                <!-- LOGO -->
+                <a class="navbar-brand text-uppercase" href="../content/home.html">
+                    <img class="logo-light" src="../content/images/logo-light.png" alt="" height="24">
+                    <img class="logo-dark" src="../content/images/logo-dark.png" alt="" height="24">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="mdi mdi-menu"></span>
+                    <!-- toggle button -->
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav" id="navbar-navlist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service">Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#team">Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faqs">FAQS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#pricing">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mb-3 mb-lg-0" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <!-- Button trigger modal -->
+                    <a th:href="@{'/login'}"><button type="button" class="btn btn-primary nav-btn" >
+                        Log in
+                    </button></a>
+                    <!-- Nav btn -->
+                </div>
+            </div><!-- End container -->
+        </nav>
+        <!-- End Navbar -->
+
+        <!--START Hero-->
+        <section class="home home-4" id="home">
+            <div class="container-fluid g-lg-0">
+                <div class="home-content-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="home-img-4">
+                                <img src="../content/images/banner-3-img.jpg" alt="image">
+                            </div>
+                        </div><!-- end col --> 
+                        <div class="col-lg-6">
+                            <div class="home-text-area home-text-area-4">
+                                <span class="badge badge-lg bg-soft-primary text-uppercase mb-3">Your Growth</span>
+                                <h1 class="head-line text-uppercase">Elevant Your Brand With Mito </h1>
+                                <p class="home-caption text-white-50">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Dignssimos provident requste uisquam quia vel sint the mollitia  the Internet tend to repeat predefined chunks as necessary, making.</p>
+                                <a href="#" class="play-button" data-bs-toggle="modal" data-bs-target="#watchvideomodal">
+                                    <span class="play-icon">
+                                        <i class="mdi mdi-play"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div><!-- end col --> 
+                    </div><!-- end row -->
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade bd-example-modal-lg" id="watchvideomodal" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="watchvideomodalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg">
+                        <div class="modal-content home-modal">
+                            <div class="modal-header border-0">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <video id="VisaChipCardVideo" class="video-box" controls>
+                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                                <!--Browser does not support <video> tag -->
+                            </video>
                         </div>
-                    </form>
-                    <form th:action="@{'orders/order-submit'}" method="get">
-                        <div class="form-group">
-                            <button class="btn btn-primary">Заказать услугу</button>
-                        </div>
-                    </form>
-                    <form th:action="@{'/logout'}" method="post">
-                    <div class="form-group">
-                        <button class="btn btn-primary">logout</button>
                     </div>
-                </form>
-                    <img src="/jopa.jpg" height="260" width="260">
-                    <form th:action="@{'/login'}" method="get">
-                        <div class="form-group">
-                            <button class="btn btn-primary">Войти</button>
+                </div><!-- end modal -->
+
+            </div><!--end container-->
+        </section>
+        <!--END home -->
+
+        <!--start service-->
+        <section class="section service-2" id="service">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center">
+                            <div class="heading">
+                                <h2 class="mb-0">Service</h2>
+                                <div class="box first">
+                                </div>
+                            </div>
+                            <p class="text-muted">See the benefits you can get by working with our experts.</p>
                         </div>
-                    </form>
-                    <div th:action="@{'/logout'}" method="post"></div>
+                    </div>
+                    <!--end col-->
+                </div><!--end row-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="process-box card border-0 mt-5">
+                                    <div class="process-icon flex-shrink-0 me-3">
+                                        <i class="mdi mdi-lightning-bolt"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Strategy</h5>
+                                        <p class="mt-2 mb-0 text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                                    </div>
+                                </div><!--end process-box-->
+                            </div><!--end col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="process-box card border-0 mt-5">
+                                    <div class="process-icon flex-shrink-0 me-3">
+                                        <i class="mdi mdi-arrow-decision-outline"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Branding</h5>
+                                        <p class="mt-2 mb-0 text-muted">The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog.</p>
+                                    </div>
+                                </div><!--end process-box-->
+                            </div><!--end col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="process-box card border-0 mt-5">
+                                    <div class="process-icon flex-shrink-0 me-3">
+                                        <i class="mdi mdi-chart-box-plus-outline"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Design</h5>
+                                        <p class="mt-2 mb-0 text-muted">A wonderful serenity has taken possession of my entire soul, like these sweet </p>
+                                    </div>
+                                </div><!--end process-box-->
+                            </div><!--end col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="process-box card border-0 mt-5">
+                                    <div class="process-icon flex-shrink-0 me-3">
+                                        <i class="mdi mdi-file-document-edit-outline"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Marketing</h5>
+                                        <p class="mt-2 mb-0 text-muted">One morning, when Gregor Samsa woke from troubled dreams, he found himself</p>
+                                    </div>
+                                </div><!--end process-box-->
+                            </div><!--end col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="process-box card border-0 mt-5">
+                                    <div class="process-icon flex-shrink-0 me-3">
+                                        <i class="mdi mdi-chart-box-plus-outline"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Development</h5>
+                                        <p class="mt-2 mb-0 text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                                    </div>
+                                </div><!--end process-box-->
+                            </div><!--end col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="process-box card border-0 mt-5">
+                                    <div class="process-icon flex-shrink-0 me-3">
+                                        <i class="mdi mdi-thumb-up-outline"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Consulting</h5>
+                                        <p class="mt-2 mb-0 text-muted">But I must explain to you how all this mistaken idea of denouncing pleasure and.</p>
+                                    </div>
+                                </div><!--end process-box-->
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div>
+            </div><!--end container-->
+        </section>
+        <!--end service-->
+
+        <!-- start cta -->
+        <section class="section cta-2">
+            <div class="bg-overlay"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="mt-5 text-center">
+                            <h1 class="cta-heading">
+                                <span class="counter_value" data-target="3700">0</span>
+                                <span>k</span>
+                            </h1>
+                            <p class="cta-text">Investment Projects</p>
+                        </div>
+                    </div><!-- end col -->
+                    <div class="col-lg-3 col-md-4">
+                        <div class="mt-5 text-center">
+                            <h1 class="cta-heading">
+                                <span class="counter_value" data-target="160">0</span>
+                            </h1>
+                            <p class="cta-text">Years of Experience</p>
+                        </div>
+                    </div><!-- end col -->
+                    <div class="col-lg-3 col-md-4">
+                        <div class="mt-5 text-center">
+                            <h1 class="cta-heading">
+                                <span class="counter_value" data-target="600">0</span>
+                                <span>k</span>
+                            </h1>
+                            <p class="cta-text">Emplys</p>
+                        </div>
+                    </div><!-- end col -->
+                    <div class="col-lg-3 col-md-4">
+                        <div class="mt-5 text-center">
+                            <h1 class="cta-heading">
+                                <span class="counter_value" data-target="5000">0</span>
+                                <span>k</span>
+                            </h1>
+                            <p class="cta-text">Happy Clinets</p>
+                        </div>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+        <!-- end cta -->
+        
+        <!-- Start Team -->
+        <section class="section team" id="team">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="heading mb-3">
+                            <h2 class="mb-0">our team</h2>
+                            <div class="box first">
+                            </div>
+                        </div>
+                        <div class="swiper mySwiper6">
+                            <div class="swiper-wrapper">
+                              <div class="swiper-slide">
+                                  <div class="row">
+                                      <div class="col-lg-5 col-md-6">
+                                          <div class="team-img">
+                                            <img class="img-fluid" src="../content/images/team/team1.png" alt="">
+                                            <div class="img-text">
+                                                <h6>Marta Matković</h6>
+                                                <span class="text-white-50">Web designer</span>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-7 col-md-6">
+                                          <div class="card h-100">
+                                            <div class="team-heading">
+                                                <div data-aos="fade-left" data-aos-duration="2000">
+                                                    <h6>Marta</h6>
+                                                </div>
+                                            </div>
+                                              <div class="card-body">
+                                                  <div class="card-text">
+                                                    <h6>Designation</h6>
+                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
+                                                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur 
+                                                        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla</p>
+                                                  </div>
+                                                  <ul class="inline-item team-icon">
+                                                      <li class="list-inline-item">
+                                                        <div data-aos="fade-up" data-aos-duration="1000">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-facebook"></i>
+                                                          </a>
+                                                        </div>
+                                                      </li>
+                                                      <li class="list-inline-item">
+                                                        <div data-aos="fade-up" data-aos-duration="1800">
+                                                            <a href="javascript:void(0)">
+                                                                <i class="mdi mdi-twitter"></i>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div data-aos="fade-up" data-aos-duration="2500">
+                                                            <a href="javascript:void(0)">
+                                                                <i class="mdi mdi-instagram"></i>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div data-aos="fade-up" data-aos-duration="3000">
+                                                            <a href="javascript:void(0)">
+                                                                <i class="mdi mdi-google-play"></i>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                  </ul>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="swiper-slide">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-6">
+                                        <div class="team-img">
+                                          <img class="img-fluid" src="../content/images/team/team2.png" alt="">
+                                          <div class="img-text">
+                                              <h6>Silvija Vučković</h6>
+                                              <span class="text-white-50">Web devloper</span>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-6">
+                                        <div class="card h-100">
+                                          <div class="team-heading">
+                                              <div data-aos="fade-left" data-aos-duration="2000">
+                                                  <h6>Silvija</h6>
+                                              </div>
+                                          </div>
+                                            <div class="card-body">
+                                                <div class="card-text">
+                                                  <h6>Designation</h6>
+                                                  <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
+                                                      laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae 
+                                                      vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit</p>
+                                                </div>
+                                                <ul class="inline-item team-icon">
+                                                    <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="1000">
+                                                        <a href="javascript:void(0)">
+                                                            <i class="mdi mdi-facebook"></i>
+                                                        </a>
+                                                      </div>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="1800">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-twitter"></i>
+                                                          </a>
+                                                      </div>
+                                                  </li>
+                                                  <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="2500">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-instagram"></i>
+                                                          </a>
+                                                      </div>
+                                                  </li>
+                                                  <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="3000">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-google-play"></i>
+                                                          </a>
+                                                      </div>
+                                                  </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="swiper-slide">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-6">
+                                        <div class="team-img">
+                                          <img class="img-fluid" src="../content/images/team/team3.png" alt="">
+                                          <div class="img-text">
+                                              <h6>Laura Rodrigues Pereira</h6>
+                                              <span class="text-white-50">Team Leader</span>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-6">
+                                        <div class="card h-100">
+                                          <div class="team-heading">
+                                              <div data-aos="fade-left" data-aos-duration="2000">
+                                                  <h6>Laura</h6>
+                                              </div>
+                                          </div>
+                                            <div class="card-body">
+                                                <div class="card-text">
+                                                  <h6>Designation</h6>
+                                                  <p class="text-muted">But I must explain to you how all this mistaken idea of denouncing pleasure and 
+                                                      praising pain was born and I will give you a complete account of the system, and expound the actual 
+                                                      teachings of the great explorer of the truth, the master-builder of human happiness. No</p>
+                                                </div>
+                                                <ul class="inline-item team-icon">
+                                                    <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="1000">
+                                                        <a href="javascript:void(0)">
+                                                            <i class="mdi mdi-facebook"></i>
+                                                        </a>
+                                                      </div>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="1800">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-twitter"></i>
+                                                          </a>
+                                                      </div>
+                                                  </li>
+                                                  <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="2500">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-instagram"></i>
+                                                          </a>
+                                                      </div>
+                                                  </li>
+                                                  <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="3000">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-google-play"></i>
+                                                          </a>
+                                                      </div>
+                                                  </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="swiper-slide">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-6">
+                                        <div class="team-img">
+                                          <img class="img-fluid" src="../content/images/team/team4.png" alt="">
+                                          <div class="img-text">
+                                              <h6>Arthur Hjálmarsson</h6>
+                                              <span class="text-white-50">CEO</span>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-6">
+                                        <div class="card h-100">
+                                          <div class="team-heading">
+                                              <div data-aos="fade-left" data-aos-duration="2000">
+                                                  <h6>Arthur</h6>
+                                              </div>
+                                          </div>
+                                            <div class="card-body">
+                                                <div class="card-text">
+                                                  <h6>Designation</h6>
+                                                  <p class="text-muted">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. 
+                                                      Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li 
+                                                      grammatica, li pronunciation e li plu commun vocabules. Omnicos directe al desirabilite de</p>
+                                                </div>
+                                                <ul class="inline-item team-icon">
+                                                    <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="1000">
+                                                        <a href="javascript:void(0)">
+                                                            <i class="mdi mdi-facebook"></i>
+                                                        </a>
+                                                      </div>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="1800">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-twitter"></i>
+                                                          </a>
+                                                      </div>
+                                                  </li>
+                                                  <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="2500">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-instagram"></i>
+                                                          </a>
+                                                      </div>
+                                                  </li>
+                                                  <li class="list-inline-item">
+                                                      <div data-aos="fade-up" data-aos-duration="3000">
+                                                          <a href="javascript:void(0)">
+                                                              <i class="mdi mdi-google-play"></i>
+                                                          </a>
+                                                      </div>
+                                                  </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div><!-- swiper-wrapper -->
+                        </div><!-- end swiper -->
+                    </div><!--col end-->
+                </div><!--row end-->
+            </div>
+        </section>
+        <!-- End Team -->
+        
+        <!--faqs-->
+        <section class="section faqs-2" id="faqs">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="text-center">
+                            <div class="heading">
+                                <h2 class="mb-0">Frequently Asked Quetions</h2>
+                                <div class="box first">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-5">
+                    <div class="col-lg-9">
+                        <ul class="nav nav-tabs nav-tabs-custom nav-justified justify-content-center faq-tab-box" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a href="#pills-genarel" class="nav-link" id="pills-genarel-tab" data-bs-toggle="pill" role="tab" 
+                                aria-controls="pills-genarel" aria-selected="true">
+                                    <h5 class="mb-0">General Questions</h5>
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a href="#pills-privacy_policy" class="nav-link active" id="pills-privacy_policy-tab" data-bs-toggle="pill"
+                                 role="tab" aria-controls="pills-privacy_policy" aria-selected="false">
+                                    <h5 class="mb-0">Privacy Policy</h5>
+                                </a>
+                              </li>
+                              <li class="nav-item" role="presentation">
+                                <a href="#pills-pricing_plan" class="nav-link" id="pills-teachers-tab" data-bs-toggle="pill"
+                                 role="tab" aria-controls="pills-pricing_plan" aria-selected="false">
+                                    <h5 class="mb-0">Pricing & Plans</h5>
+                                </a>
+                              </li>
+                          </ul>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade active show" id="pills-genarel" role="tabpanel" aria-labelledby="pills-genarel-tab">
+                                <div class="accordion" id="accordionExampleONE">
+                                    <div class="accordion-item">
+                                      <div class="accordion-header" id="headingOne1">
+                                        <a href="#collapseOne1" class="accordion-button" data-bs-toggle="collapse" 
+                                        aria-expanded="true" aria-controls="collapseOne1">
+                                            <h6> <span>1.</span> Where can I get some?</h6>
+                                        </a>
+                                      </div>
+                                      <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1" data-bs-parent="#accordionExampleONE">
+                                        <div class="accordion-body">
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget 
+                                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus 
+                                                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
+                                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, 
+                                                venenatis </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <div class="accordion-header" id="headingTwo2">
+                                        <a href="#collapseTwo2" class="accordion-button collapsed" data-bs-toggle="collapse" 
+                                        aria-expanded="false" aria-controls="collapseTwo2">
+                                        <h6> <span>2.</span>Where does it come from ?</h6>
+                                        </a>
+                                      </div>
+                                      <div id="collapseTwo2" class="accordion-collapse collapse" aria-labelledby="headingTwo2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <p class="text-muted">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, 
+                                                musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation 
+                                                e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi 
+                                                traductores. At solmen va esser necessi far
+                                            </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <div class="accordion-header" id="headingThree3">
+                                        <a href="#collapseThree3" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                        aria-expanded="false" aria-controls="collapseThree3">
+                                        <h6> <span>3.</span>Why do we use it ?</h6>
+                                        </a>
+                                      </div>
+                                      <div id="collapseThree3" class="accordion-collapse collapse" aria-labelledby="headingThree3" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <p class="text-muted">The European languages are members of the same family. Their separate existence is a myth. 
+                                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their 
+                                                pronunciation and their most common words. Everyone realizes why a new common language would be desirable: 
+                                                one could refuse to pay expensive translators. To achieve this</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <div class="accordion-header" id="headingfour4">
+                                          <a href="#collapsefour4" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                          aria-expanded="false" aria-controls="collapsefour4">
+                                          <h6> <span>4.</span>Why do we use it ?</h6>
+                                          </a>
+                                        </div>
+                                        <div id="collapsefour4" class="accordion-collapse collapse" aria-labelledby="headingfour4" data-bs-parent="#accordionExample">
+                                          <div class="accordion-body">
+                                              <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
+                                                  there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large 
+                                                  language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. 
+                                                  It is a paradisematic country, in which roasted parts.</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-privacy_policy" role="tabpanel" aria-labelledby="pills-privacy_policy-tab">
+                                <div class="accordion" id="accordionExample1">
+                                    <div class="accordion-item">
+                                      <div class="accordion-header" id="headingOne">
+                                        <a href="#collapseOne" class="accordion-button" data-bs-toggle="collapse"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                            <h6> <span>1.</span> Where can I get some?</h6>
+                                        </a>
+                                      </div>
+                                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample1">
+                                        <div class="accordion-body">
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget 
+                                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus 
+                                                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
+                                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, 
+                                                venenatis </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <div class="accordion-header" id="headingTwo">
+                                        <a href="#collapseTwo" class="accordion-button collapsed" data-bs-toggle="collapse" 
+                                        aria-expanded="false" aria-controls="collapseTwo">
+                                        <h6> <span>2.</span>Where does it come from ?</h6>
+                                        </a>
+                                      </div>
+                                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <p class="text-muted">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, 
+                                                musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation 
+                                                e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi 
+                                                traductores. At solmen va esser necessi far
+                                            </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <div class="accordion-header" id="headingThree">
+                                        <a href="#collapseThree" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                        aria-expanded="false" aria-controls="collapseThree">
+                                        <h6> <span>3.</span>Why do we use it ?</h6>
+                                        </a>
+                                      </div>
+                                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <p class="text-muted">The European languages are members of the same family. Their separate existence is a myth. 
+                                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their 
+                                                pronunciation and their most common words. Everyone realizes why a new common language would be desirable: 
+                                                one could refuse to pay expensive translators. To achieve this</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <div class="accordion-header" id="headingfour">
+                                          <a href="#collapsefour" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                          aria-expanded="false" aria-controls="collapsefour">
+                                          <h6> <span>4.</span>Why do we use it ?</h6>
+                                          </a>
+                                        </div>
+                                        <div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="headingfour" data-bs-parent="#accordionExample">
+                                          <div class="accordion-body">
+                                              <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
+                                                  there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large 
+                                                  language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. 
+                                                  It is a paradisematic country, in which roasted parts.</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div> 
+                            </div>
+                            <div class="tab-pane fade" id="pills-pricing_plan" role="tabpanel" aria-labelledby="pills-tab">
+                                <div class="accordion" id="accordionexampleOnE">
+                                    <div class="accordion-item">
+                                      <div class="accordion-header" id="headingone">
+                                        <a href="#collapseone" class="accordion-button" data-bs-toggle="collapse"
+                                        aria-expanded="true" aria-controls="collapseone">
+                                            <h6> <span>1.</span> Where can I get some?</h6>
+                                        </a>
+                                      </div>
+                                      <div id="collapseone" class="accordion-collapse collapse show" aria-labelledby="headingone" data-bs-parent="#accordionexampleOnE">
+                                        <div class="accordion-body">
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget 
+                                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus 
+                                                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
+                                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, 
+                                                venenatis </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <div class="accordion-header" id="headingtwo">
+                                        <a href="#collapsetwo" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                        aria-expanded="false" aria-controls="collapsetwo">
+                                        <h6> <span>2.</span>Where does it come from ?</h6>
+                                        </a>
+                                      </div>
+                                      <div id="collapsetwo" class="accordion-collapse collapse" aria-labelledby="headingtwo" data-bs-parent="#accordionexample">
+                                        <div class="accordion-body">
+                                            <p class="text-muted">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, 
+                                                musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation 
+                                                e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi 
+                                                traductores. At solmen va esser necessi far
+                                            </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <div class="accordion-header" id="headingthree">
+                                        <a href="#collapsethree" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                        aria-expanded="false" aria-controls="collapsethree">
+                                        <h6> <span>3.</span>Why do we use it ?</h6>
+                                      </a>
+                                      </div>
+                                      <div id="collapsethree" class="accordion-collapse collapse" aria-labelledby="headingthree" data-bs-parent="#accordionexample">
+                                        <div class="accordion-body">
+                                            <p class="text-muted">The European languages are members of the same family. Their separate existence is a myth. 
+                                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their 
+                                                pronunciation and their most common words. Everyone realizes why a new common language would be desirable: 
+                                                one could refuse to pay expensive translators. To achieve this</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <div class="accordion-header" id="headingFour">
+                                          <a href="#collapseFour" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                          aria-expanded="false" aria-controls="collapseFour">
+                                          <h6> <span>4.</span>Why do we use it ?</h6>
+                                          </a>
+                                        </div>
+                                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionexample">
+                                          <div class="accordion-body">
+                                              <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
+                                                  there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large 
+                                                  language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. 
+                                                  It is a paradisematic country, in which roasted parts.</p>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div><!-- end container -->
+        </section>
+        <!-- End faqs -->
+
+        <!-- START pricing -->
+        <section class="section pricing" id="pricing">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center">
+                            <div class="heading">
+                                <h2 class="mb-0">Pricing</h2>
+                                <div class="box first"></div>
+                            </div>
+                            <p class="text-muted">Pays for itself with with one saved invoice.</p>
+                        </div>
+                    </div><!-- end col-->
+                </div><!-- end row-->
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="toggle-btn text-center pb-5 d-flex align-items-center justify-content-center">
+                            <div class="me-1 me-md-3 toggle-text">Monthly</div>
+                            <label class="switch">
+                              <input type="checkbox" id="checbox" onclick="check()" />
+                              <span class="slider round rounded-pill"></span>
+                            </label>
+                            <div class="ms-1 ms-md-3 toggle-text">Annually</div>
+                        </div>
+                    </div><!-- end col-->
+                </div>   <!-- end row--> 
+                <div class="row gy-4 justify-content-center">
+                    <div class="col-xl-10">
+                        <div class="row g-md-4">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card pricing-box h-100">
+                                    <div class="card-body p-0">
+                                        <div class="card-header">
+                                            <h6 class="fw-normal mb-3 text-white">Free Plan</h6>
+                                            <div class="d-flex align-items-end justify-content-start">
+                                                <div class="flex-shrink-0 pricing-price">
+                                                    <h1 class="mb-0 text1 text-white">$0</h1>
+                                                    <h1 class="mb-0 text2 text-white">$0</h1>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <p class="mb-0 ms-1 fs-14 text-white">/ Life Time</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-4">
+                                            <ul class="list-unstyled">
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>Today Planing & view</span>
+                                                    </i>
+                                                </li>
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>Checklist templates</span>
+                                                    </i>
+                                                </li>
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>Clander intergation</span>
+                                                    </i>
+                                                </li>
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>Browser extension</span>
+                                                    </i>
+                                                </li>
+                                            </ul>
+                                            <a href="javascript:void(0)" class="btn btn-primary pricing-btn rounded-pill">Get started</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card pricing-box h-100 active-price">
+                                    <div class="card-body p-0">
+                                        <div class="positin-relative">
+                                            <span class="lable-name text-uppercase">Popular</span>
+                                        </div>
+                                        <div class="card-header">
+                                            <h6 class="fw-normal mb-3 text-white">Besic Plan</h6>
+                                            <div class="d-flex align-items-end justify-content-start">
+                                                <div class="flex-shrink-0 pricing-price">
+                                                    <h1 class="mb-0 text1 text-white">$30</h1>
+                                                    <h1 class="mb-0 text2 text-white">$10</h1>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <p class="mb-0 ms-1 fs-14 text2 text-white">/ Per Month</p>
+                                                    <p class="mb-0 ms-1 fs-14 text1 text-white">/ Annually</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-4">
+                                            <ul class="list-unstyled">
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>Everithing in Free</span>
+                                                    </i>
+                                                </li>
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>Checklist templates</span>
+                                                    </i>
+                                                </li>
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>Premium intergation</span>
+                                                    </i>
+                                                </li>
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>30-Day trial</span>
+                                                    </i>
+                                                </li>
+                                            </ul>
+                                            <a href="javascript:void(0)" class="btn btn-primary pricing-btn rounded-pill">Get started</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card pricing-box h-100">
+                                    <div class="card-body p-0">
+                                        <div class="card-header">
+                                            <h6 class="fw-normal mb-3 text-white">Advance Plan</h6>
+                                            <div class="d-flex align-items-end justify-content-start">
+                                                <div class="flex-shrink-0 pricing-price">
+                                                    <h1 class="mb-0 text1 text-white">$100</h1>
+                                                    <h1 class="mb-0 text2 text-white">$50</h1>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <p class="mb-0 ms-1 fs-14 text2 text-white">/ Per Month</p>
+                                                    <p class="mb-0 ms-1 fs-14 text1 text-white">/ Annually</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-4">
+                                            <ul class="list-unstyled">
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>Everithing in Basic</span>
+                                                    </i>
+                                                </li>
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>Unlimited members</span>
+                                                    </i>
+                                                </li>
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>dedicated support</span>
+                                                    </i>
+                                                </li>
+                                                <li class="list-text">
+                                                    <i class="mdi mdi-checkbox-marked-circle">
+                                                        <span>All Advance Featuers</span>
+                                                    </i>
+                                                </li>
+                                            </ul>
+                                            <a href="javascript:void(0)" class="btn btn-primary pricing-btn rounded-pill">Get started</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end col-->
+                        </div><!-- end row-->
+                    </div><!-- end col-->
+                </div><!-- end row-->
+            </div><!-- end container-->
+        </section>
+        <!-- END pricing -->
+
+        <!-- Start contact -->
+        <section class="section contact" id="contact">
+            <div class="bg-overlay"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-9">
+                        <div class="row align-items-center gy-3">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <div class="social-list">
+                                            <h6 class="mb-0">Let's Get</h6>
+                                            <h3 class="fw-semibold">Started</h3>
+                                            <div class="d-sm-flex card-text">
+                                                <p class="me-4 mb-0">Reach up</p>
+                                                <a class="text-white" href="javascript:void(0)"><i class="mdi mdi-phone-outline me-2"></i>408.409.6483</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-6">
+                                <form method="post" onsubmit="return validateForm()" class="contact-form" name="myForm" id="myForm">
+                                    <span id="error-msg"></span>
+                                    <div class="row rounded-3 py-3">
+                                        <div class="col-lg-12">
+                                            <div class="position-relative mb-3">
+                                                <span class="input-group-text"><i class="mdi mdi-account-outline"></i></span>
+                                                <input name="name" id="name" type="text" class="form-control" placeholder="Enter your name*">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="position-relative mb-3">
+                                                <span class="input-group-text"><i class="mdi mdi-email-outline"></i></span>
+                                                <input id="email" type="password" class="form-control" placeholder="Enter your email*">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="position-relative mb-3">
+                                                <span class="input-group-text"><i class="mdi mdi-file-document-outline"></i></span>
+                                                <input name="subject" id="subject" type="text" class="form-control" placeholder="Subject">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="position-relative mb-3">
+                                            <span class="input-group-text align-items-start"><i class="mdi mdi-comment-text-outline"></i></span>
+                                                <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Enter your message*"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="text-end">
+                                                <input type="submit" id="submit" name="send" class="btn btn-primary" value="Send Message">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!--end form-->
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div>
+            </div><!--end container-->
+        </section>
+        <!-- End contact -->
+
+        <!-- START FOOTER -->
+        <footer class="section footer">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-sm-10 text-center">
+                        <a href="javascript:void(0)"><img src="../content/images/logo-dark.png" height="30" alt=""></a>
+                        <p class="mx-auto mt-sm-4">Obviously I'm a Web Designer. Experienced with all stages of the development cycle for dynamic web projects.</p>
+                        <ul class="list-unstyled mb-0 mt-3 social-icon">
+                            <li class="list-inline-item">
+                                <div data-aos="fade-up" data-aos-duration="800">
+                                    <div class="icon-text">
+                                        <div class="icon facebook">
+                                            <div class="tooltip">Facebook</div>
+                                            <span><i class="mdi mdi-facebook"></i></span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <div data-aos="fade-up" data-aos-duration="1200">
+                                    <div class="icon-text">
+                                        <div class="icon twitter">
+                                            <div class="tooltip">Twitter</div>
+                                            <span><i class="mdi mdi-twitter"></i></span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <div data-aos="fade-up" data-aos-duration="1600">
+                                    <div class="icon-text">
+                                        <div class="icon instagram">
+                                            <div class="tooltip">Instagram</div>
+                                            <span><i class="mdi mdi-instagram"></i></span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <div data-aos="fade-up" data-aos-duration="2000">
+                                    <div class="icon-text">
+                                        <div class="icon github">
+                                            <div class="tooltip">Github</div>
+                                            <span><i class="mdi mdi-github"></i></span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <div data-aos="fade-up" data-aos-duration="2400">
+                                    <div class="icon-text">
+                                        <div class="icon youtube">
+                                            <div class="tooltip">Youtube</div>
+                                            <span><i class="mdi mdi-youtube"></i></span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div><!--end col-->
+                </div><!--end row-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="text-center mt-3">
+                            <ul class="list-unstyled mb-0">
+                                <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                    <a class="text-black" href="javascript:void(0)">Home</a>
+                                </li>
+                                <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                    <a class="text-black" href="javascript:void(0)">About us</a>
+                                </li>
+                                <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                    <a class="text-black" href="javascript:void(0)">Order</a>
+                                </li>
+                                <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                    <a class="text-black" href="javascript:void(0)">Member</a>
+                                </li>
+                                <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                    <a class="text-black" href="javascript:void(0)">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- end col-->
+                </div><!-- end row-->
+            </div><!--end container-->
+        </footer>
+        <!-- END FOOTER -->
+
+        <!-- FOOTER-ALT -->
+        <div class="footer-alt pt-4 pb-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="mb-0 fs-15">©
+                                <script>document.write(new Date().getFullYear())</script> Mito Design by
+                                <i class="mdi mdi-heart text-danger"></i> Themesdesign
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-</body>
+        <!-- END FOOTER-ALT -->
+
+        <!--start back-to-top-->
+        <button onclick="topFunction()" id="back-to-top">
+            <i class="mdi mdi-arrow-up"></i>
+        </button>
+        <!--end back-to-top-->
+
+        <!--Custom js-->
+        <script src="../content/js/counter.js"></script>
+
+        <!--Bootstrap Js-->
+        <script src="../content/js/bootstrap.bundle.min.js"></script>
+
+        <!-- animation -->
+        <script src="../content/js/aos.js"></script>
+
+        <!-- swiper js -->
+        <script src="../content/js/swiper-bundle.min.js"></script>
+
+        <!-- contact -->
+        <script src="../content/js/contact.js"></script>
+
+        <!-- Team particles-->
+        <script src="../content/js/particles.min.js"></script>
+
+        <!-- App Js -->
+        <script src="../content/js/app.js"></script>
+
+    </body>
 </html>

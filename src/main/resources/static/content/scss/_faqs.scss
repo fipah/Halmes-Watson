@@ -1,0 +1,95 @@
+// 
+//  faqs-2
+// 
+
+.faqs-2 {
+    background-color: rgba($primary, 0.03);
+    .nav {
+        &.nav-tabs {
+            border-bottom: none;
+            .nav-item {
+                padding-right: 10px;
+                .nav-link {
+                    color: $black;
+                    padding: 24px 0;
+                    border-radius: 8px;
+                    &.active,
+                    :focus {
+                        border: 2px solid rgba($primary, 0.8);
+                        color: $primary;
+                        box-shadow: rgba($black, 0.27) 0px 3px 8px;
+                        transition: all 0.9s ease 0s;
+                        background: transparent;
+                    }
+                    &:hover {
+                        border: 2px solid rgba($primary, 0.8);
+                        color: $primary
+                    }
+                }
+            }
+        }
+    }
+    .tab-content {
+        padding-top: 1rem;
+        .accordion {
+            .accordion-item {
+                border-radius: 8px;
+                margin: 19px 0 0 0;
+                border: 1px solid #e0e0e0;
+                .accordion-button {
+                    margin: 0px 8px 0px 0;
+                    border-radius: 8px;
+                    padding: 36px 24px 10px 24px;
+                    &::after {
+                        background-image: none;
+                        transition: all 0.5s ease;
+                    }
+                    h6 {
+                        margin-bottom: 0;
+                        position: relative;
+                        padding-left: 40px;
+                        font-size: 18px;
+                        span {
+                            position: absolute;
+                            font-size: 44px;
+                            top: -27px;
+                            left: 0;
+                        }
+                    }
+                    &:focus {
+                        box-shadow: none;
+                    }
+                }
+                .accordion-body {
+                    padding: 12px 58px 8px 66px;
+                }
+            }
+            .accordion-button:not(.collapsed) {
+                color: $primary;
+                background-color: transparent;
+                box-shadow: none;
+                h6 {
+                    font-weight: 600;
+                    span {
+                        opacity: 1;
+                        color: $primary;
+                    }
+                }
+            }
+            .accordion-button:after {
+                content: "\F0374";
+                font-family: "Material Design Icons";
+                color: rgba($primary, 1);
+                margin-top: -20px;
+            }
+            .accordion-button.collapsed:after {
+                content: "\F0415";
+                font-family: "Material Design Icons";
+                color: rgba($black, 1);
+                margin-top: -20px;
+            }
+        }
+    }
+}
+
+

@@ -1,0 +1,170 @@
+// 
+// team
+// 
+
+.team {
+    position: relative;
+    transition: all 0.5s ease;
+    .swiper {
+        width: 100%;
+        height: auto;
+        .swiper-wrapper {
+            .swiper-slide {
+                color: rgba($black, 1);
+                .team-img {
+                    position: relative;
+                    &:hover {
+                        .img-text {
+                            display: block;
+                            margin-bottom: 0;
+                            background-color: rgba($black, 0.5);
+                            h6 {
+                                display: block;
+                            }
+                            span {
+                                display: block;
+                            }
+                        }
+                    }
+                    img {
+                        border-radius: 10px;
+                    }
+                    .img-text {
+                        position: absolute;
+                        bottom: 0;
+                        border: 0;
+                        left: 0;
+                        right: 0;
+                        transition: all 0.7s ease;
+                        padding: 25px 15px;
+                        border-radius: 0 0 10px 10px;
+                        h6 {
+                            display: none;
+                            transition: all .1s ease;
+                            color: $white;
+                        }
+                        span {
+                            display: none;
+                            transition: all .1s ease;
+                        }
+                    }
+                }
+                .card {
+                    border: none;
+                    .team-heading {
+                        position: relative;
+                        h6 {
+                            text-transform: uppercase;
+                            line-height: 0.8;
+                            font-size: 100px;
+                            display: flex;
+                            opacity: 0.5;
+                            letter-spacing: 22px;
+                            margin: 88px 0px 16px -161px;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            background: linear-gradient(to right, #30CFD0 0%, #801919 100%);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                        }
+                    }
+                    .card-body {
+                        position: relative;
+                        .card-text {
+                            font-size: 14px;
+                            padding: 0 0 35px 0;
+                            h6 {
+                                color: $primary;
+                                font-weight: 600;
+                                &:hover {
+                                    color: $black;
+                                }
+                            }
+                        }
+                        .team-icon {
+                            padding-left: 0;
+                            li {
+                                font-size: 22px;
+                                &:first-child {
+                                    i {
+                                        color: #3b5998;
+                                        &:hover {
+                                            color: #1c4191;
+                                        }
+                                    }
+                                }
+                                &:nth-child(2) {
+                                    i {
+                                        color: #1da1f2;
+                                        &:hover {
+                                            color: #0096f3;
+                                        }
+                                    }
+                                }
+                                &:nth-child(3) {
+                                    i {
+                                        color: #e1306c;
+                                        &:hover {
+                                            color: #c90144;
+                                        }
+                                    }
+                                }
+                                &:nth-child(4) {
+                                    i {
+                                        color: #0077b5;
+                                        &:hover {
+                                            color: #005583;
+                                        }
+                                    }
+                                }
+                                i {
+                                    margin-right: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+              }
+        }
+      }
+  }
+
+  
+  @media (max-width: 1140px) { 
+      .team {
+          .swiper {
+            .swiper-wrapper {
+                .swiper-slide {
+                    .card {
+                        .team-heading {
+                            h6 {
+                                margin: 50px 0px 0px -100px;
+                                font-size: 50px;
+                                line-height: 1.5;
+                            }
+                        }
+                    }
+                }
+            }
+          }
+      }
+ }
+
+ @media (max-width: 576px) { 
+    .team {
+        .swiper {
+          .swiper-wrapper {
+              .swiper-slide {
+                  .card {
+                      .team-heading {
+                          h6 {
+                              margin: 0px;
+                              font-size: 50px;
+                          }
+                      }
+                  }
+              }
+          }
+        }
+    }
+}

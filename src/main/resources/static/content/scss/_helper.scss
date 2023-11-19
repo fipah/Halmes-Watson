@@ -1,0 +1,225 @@
+//
+// helper.scss
+//
+
+/*******color Loop*******/
+@each $color, $value in $theme-colors {
+  .text-#{$color} {
+    color: $value !important;
+  }
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+  .bg-soft-#{$color} {
+      background-color: rgba(($value), 0.18) !important;
+  }
+}
+
+.section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  position: relative;
+}
+
+/*******font-size*******/
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-13 {
+  font-size: 13px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-17 {
+  font-size: 17px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-19 {
+  font-size: 19px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+/**********bg-overlay***************/
+
+.bg-overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($black, 0.5);
+}
+
+/************** heading *****************/ 
+
+.heading {
+  display: inline-block;
+  h2 {
+    text-transform: capitalize;
+    font-size: 26px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+}
+
+.box {
+  height: 3px;
+  position:relative;
+  overflow: hidden;
+}
+
+.first::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  width: 90px;
+  background: rgb(104, 183, 236);
+  animation: first 8s infinite linear;
+}
+
+@keyframes first {
+    from {
+      left: 0;
+      transform: translateX(-100%);
+    }
+    50% {
+      left: 100%; 
+      transform: translateX(0%);
+    }
+    to {
+      left: 0;
+      transform: translateX(-100%);
+    }
+  }
+  
+
+/***********home shape arrow***************/
+
+.home-shape-arrow {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  left: 0;
+  .arrows {
+    width: 50px;
+    height: 56px;
+    position: absolute;
+    left: 50%;
+    margin-left: -30px;
+    bottom: -31px;
+    path {
+      stroke-width: 1px;
+      animation: arrow 2s infinite;
+    }
+  }
+}
+
+@keyframes arrow
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+@-webkit-keyframes arrow /*Safari and Chrome*/
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+.arrows path.a1 {
+	animation-delay:-1s;
+}
+
+.arrows path.a2 {
+	animation-delay:-0.5s;
+}
+
+.arrows path.a3 {	
+	animation-delay:0s;
+}
+
+
+// back home button
+
+#back-to-top {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 20px;
+  z-index: 999;
+  right: 30px;
+  background: $primary;
+  border-color: transparent;
+  border-radius: 50%;
+  color: $white;
+  transition: all 0.5s ease;
+  display: none;
+  animation: back-to-top 750ms ease-in infinite alternate;
+  &:hover {
+    background-color: rgba($white, 1);
+    color: rgba($black, 1);
+    border: 1px solid;
+  }
+}
+
+@keyframes back-to-top {
+  0% {
+    transform: translateY(-25%);
+    opacity:1;
+  }
+  
+  100% {
+    transform: translateY(25%) scale(.9);
+    opacity: .9;
+  }
+}
+
+
+/*******font-weight*******/
+.fw-medium {
+  font-weight: $font-weight-medium;
+}
+
+.fw-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+/*******link color*******/
+.primary-link {
+  color: $dark;
+  transition: all 0.5s ease;
+  &:hover {
+    color: $primary;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px !important;
+  }
+}

@@ -1,0 +1,43 @@
+
+// 
+// Service
+// 
+
+
+.service-2 {
+    .instru-video {
+      width: 55px;
+      height: 55px;
+      line-height: 55px;
+      background: rgba($white, 1);
+      text-align: center;
+      border: 1px solid;
+      border-radius: 50%;
+    }
+    .process-box {
+      padding: 22px;
+      border-radius: 10px;
+      transition: all 0.5s ease;
+      &:hover {
+        box-shadow: 0 10px 25px rgba(60 72 88 / 15%);
+        .process-icon {
+          border-radius: 5px;
+          transform: rotate(360deg);
+          background-color: rgba($primary, 0.65);
+        }
+      }
+      .process-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+        border-radius: 50%;
+        margin-bottom: 18px;
+        color: rgba($white, 1);
+        background-color: rgba($primary, 1);
+        transition: all 0.5s ease;
+      }
+    }
+  }

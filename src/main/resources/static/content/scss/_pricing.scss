@@ -1,0 +1,141 @@
+// 
+//  peicing
+// 
+
+.pricing {
+  .switch {
+    position: relative;
+    min-width: 60px;
+    height: 32px;
+    .slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #d9f2f9;
+      &:before {
+        position: absolute;
+        content: "";
+        height: 25px;
+        width: 25px;
+        left: 5px;
+        bottom: 4px;
+        background-color: $primary;
+        transition: 0.4s;
+      }
+    }
+    .round:before {
+      border-radius: 50%;
+    }
+  }
+  .pricing-box {
+    border-radius: 8px;
+    .card-body {
+      transition: all 0.9s ease;
+      border-radius: 8px;
+      background-image: url(../images/pricing.png);
+      background-size: cover;
+      .lable-name {
+        position: absolute;
+        background-color: rgba($white, 1);
+        color: $primary;
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 90px;
+        top: 0;
+        right: 0;
+        font-weight: 600;
+        transform: rotate(-90deg) translateX(-27%);
+        &:after {
+          content: "";
+          border-top: 20px solid rgba($white, 1);
+          border-bottom: 20px solid rgba($white, 1);
+          border-right: 11px solid transparent;
+          border-left: 11px solid transparent;
+          position: absolute;
+          left: -11px;
+          top: 0;
+        }
+      }
+      ul {
+        li {
+          padding: 5px 0;
+          i {
+            font-size: 18px;
+            transition: all 0.9s ease;
+            color: rgba($primary, 0.7);
+            display: flex;
+            align-items: center;
+            span {
+              color: rgba($black, 1);
+              margin-left: 5px;
+              font-size: 14px;
+              font-style: normal;
+              transition: all 0.9s ease;
+            }
+          }
+        }
+      }
+      .card-header {
+        background-color: rgba($primary, 0.7);
+        padding: 30px;
+        border-radius: 8px 8px 0 0;
+        .pricing-price {
+          h1 {
+            line-height: 1;
+          }
+        }
+      }
+      .pricing-btn {
+        padding: 10px 28px;
+        background-color: rgba($primary, 0.7);
+        border: 1px solid rgba($primary, 0.1);
+      }
+    }
+    &:hover,
+    &.active-price {
+      .card-body {
+        background-color: rgba($primary, 1);
+        ul {
+          li {
+            i {
+              color: rgba($white, 1);
+              span {
+                color: rgba($white, 1);
+              }
+            }
+          }
+        }
+        .pricing-btn {
+          background-color: rgba($white, 1);
+          border: 1px solid rgba($white, 1);
+          color: rgba($primary, 1);
+        }
+      }
+    }
+  }
+}
+
+/* checkd btn */
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+
+@media (max-width: 768px) {
+  .pricing {
+    background-image: none;
+    padding: 50px 0;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .toggle-text {
+    font-size: 12px;
+  }
+}

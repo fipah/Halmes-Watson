@@ -1,0 +1,86 @@
+//
+// reviews
+//
+
+.reviews {
+    background-image: url(../images/reviews.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    .accordion-item {
+        margin: 0 0 40px 0;
+        box-shadow: rgba($black, 0.19) 0px 5px 15px;
+        border-radius: 12px;
+        border: none;
+        .accordion-button {
+            display: grid;
+            padding: 26px;
+            border-radius: 20px !important;
+            background-color: rgba($primary, 0.1);
+            &:focus {
+                box-shadow: none;
+            }
+            &:after {
+                position: absolute;
+                cursor: pointer;
+                right: 25px;
+                align-self: center;
+            } 
+            ul {
+                margin: 0;
+                li {
+                    font-size: 16px;
+                    margin: 0;
+                    &:first-child {
+                        i {
+                            color: rgba($warning, 1);
+                        }
+                    }
+                    &:nth-child(2) {
+                        i {
+                            color: rgba($warning, 0.8);
+                        }
+                    }
+                    &:nth-child(3) {
+                        i {
+                            color: rgba($warning, 0.6);
+                        }
+                    }
+                    &:nth-child(4) {
+                        i {
+                            color: rgba($warning, 0.3);                       
+                        }
+                    }
+                    &:nth-child(5) {
+                        i {
+                            color: rgba($light, 1);                         
+                        }
+                    }
+                    i {
+                        margin-right: 2px;
+                    }
+                }
+            }
+        }
+        .accordion-body {
+            padding: 10px 26px 26px 26px;
+            ul {
+                display: flex;
+                justify-content: end;
+                margin: 0;
+                .clinte-btn {
+                    text-transform: uppercase;
+                    font-size: 13px;
+                    font-weight: 600;
+                    border-radius: 30px;
+                    padding: 8px 22px;
+                }
+            }
+        }
+    }
+    .accordion-button:not(.collapsed) {
+        border-radius:  19px 19px 0 0;
+        box-shadow: none;
+        background-color: $white;
+    }
+}
+

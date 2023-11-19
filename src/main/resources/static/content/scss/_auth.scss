@@ -1,0 +1,43 @@
+// 
+// authentication
+// 
+
+.bg-account-pages {
+    background-color: rgba($primary, 0.2);
+    display: flex;
+    align-items: center;
+    .card {
+        padding: 18px 40px 46px 40px;
+        .auth-img {
+            margin: 0 auto;
+            width: 120px;
+        }
+        .card-body {
+            .heading {
+                font-size: 50px;
+            }
+            form {
+                .form-control {
+                    border-bottom: 1px solid rgba($muted, 0.4);
+                    padding: 8px 10px;
+                    &:focus {
+                        box-shadow: none;
+                        border: 1px solid rgba($muted, 0.4);
+                    }
+                }
+                .form-check-label {
+                    font-size: 13px;
+                    color: rgba($muted, 1);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) { 
+    .bg-account-pages {
+        .card {
+            padding: 0;
+        }
+    }
+}
