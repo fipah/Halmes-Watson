@@ -53,10 +53,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDTO> getAllOrders() {
-        return orderRepository.findAll()
-                .stream()
-                .map(OrderServiceImpl::convertOrderToDto)
-                .collect(Collectors.toList());
+        return orderRepository.findAll().stream().map(OrderServiceImpl::convertOrderToDto).collect(Collectors.toList());
     }
 
     private static OrderDTO convertOrderToDto(Orders orders) {
@@ -110,9 +107,18 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDTO> getAllOrdersByUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();
-        return orderRepository.findAllByUsername(username)
-                .stream()
-                .map(OrderServiceImpl::convertOrderToDto)
-                .collect(Collectors.toList());
+        return orderRepository.findAllByUsername(username).stream().map(OrderServiceImpl::convertOrderToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteByIdAndUserId(Long orderId, Long userId) {
+        Orders order = orderRepository.findByIdAndUserId(orderId, userId);
+        if (Objects.isNull(order) ||
+                order.getOrderStatus().getCode().equals(OrderStatusEnum.COMPLETED) ||
+                order.getOrderStatus().getCode().equals(OrderStatusEnum.IN_PROGRESS)) {
+            return;
+        }
+
+        orderRepository.delete(order);
     }
 }

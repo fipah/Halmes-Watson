@@ -54,6 +54,13 @@ public class OrderController {
         return "client-order";
     }
 
+    @DeleteMapping("/order/{id}")
+    String deleteOrder(@PathVariable Long id) {
+        Users principal = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        orderService.deleteByIdAndUserId(id, principal.getId());
+        return "client-order";
+    }
+
 
     @GetMapping
     List<OrderDTO> getAllOrders() {
