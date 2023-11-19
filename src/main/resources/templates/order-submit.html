@@ -17,6 +17,11 @@
                 <label class="form-label">Описание заказа: </label>
                 <input type="text" class="form-control" th:field="*{description}">
             </div>
+            <div class="row">
+                <div th:each="service: ${services}" class="form-group">
+                    <p> УСЛУГА: <span th:text="${service.name}"></span></p>
+                </div>
+            </div>
             <div class="form-group">
                 <button class="btn btn-primary">Add Product</button>
             </div>

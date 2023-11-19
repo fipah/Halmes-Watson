@@ -12,4 +12,6 @@ public class Clients {
     String clientName;
     String description;
     Long price;
+
+    Long serviceId;
 }

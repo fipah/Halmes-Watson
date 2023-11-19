@@ -34,6 +34,7 @@ public class WebSecurityConfig {
                                 .requestMatchers("/register").permitAll()
                                 .requestMatchers("/register/employee").hasAnyRole("admin")
                                 .requestMatchers("/content/**").permitAll()
+                                .requestMatchers("/recoverypage").permitAll()
                                 .requestMatchers("/v1/users/create-users").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(form -> form

@@ -37,10 +37,22 @@
                                 <div class="alert alert-primary text-center mt-4" role="alert">
                                     <p class="mb-0">Enter your email address and we'll send you an email with instructions to reset your password.</p>
                                 </div>
-                                <form>
+                                <form  th:action="@{'/recoverypage'}" method="post">
                                     <div class="mb-3">
-                                        <label class="mb-2" for="email">Email</label>
-                                        <input type="password" class="form-control" id="Email" placeholder="Enter Email">
+                                        <label class="mb-2" for="username">Username</label>
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter Email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="mb-2" for="secret">SECRET</label>
+                                        <input type="text" class="form-control" name="secret" id="secret" placeholder="Enter Email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="mb-2" for="password">PASSWORD</label>
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter Email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="mb-2" for="confirmPassword">PASSWORD</label>
+                                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Enter Email">
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">

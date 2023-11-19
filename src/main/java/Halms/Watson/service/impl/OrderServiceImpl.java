@@ -7,13 +7,11 @@ import Halms.Watson.model.entity.OrderStatus;
 import Halms.Watson.model.entity.Orders;
 import Halms.Watson.model.entity.Users;
 import Halms.Watson.model.enums.OrderStatusEnum;
-import Halms.Watson.repository.EmployeeRepository;
-import Halms.Watson.repository.OrderRepository;
-import Halms.Watson.repository.OrderStatusRepository;
-import Halms.Watson.repository.UserRepository;
+import Halms.Watson.repository.*;
 import Halms.Watson.service.OrderService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -32,6 +30,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderStatusRepository orderStatusRepository;
     private final EmployeeRepository employeeRepository;
     private final UserRepository userRepository;
+    private final ServiceRepository serviceRepository;
 
     @Override
     @Transactional
@@ -42,6 +41,8 @@ public class OrderServiceImpl implements OrderService {
         Users users = byUsername.get();
         Orders orders = new Orders();
         orders.setUser(users);
+        Halms.Watson.model.entity.Service service = serviceRepository.findById(clients.getServiceId()).get();
+        orders.setService(service);
         OrderStatus statusByCode = orderStatusRepository.getStatusByCode(OrderStatusEnum.NEW);
         orders.setOrderStatus(statusByCode);
         orders.setClientName(users.getName());

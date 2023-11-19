@@ -29,4 +29,7 @@ public class Users {
     private Role role;
 
     private String name;
+
+    @OneToOne(mappedBy = "user")
+    SecretAnswer answer;
 }

@@ -2,9 +2,12 @@ package Halms.Watson.controller;
 
 import Halms.Watson.model.dto.Clients;
 import Halms.Watson.model.dto.OrderDTO;
+import Halms.Watson.model.entity.Service;
 import Halms.Watson.model.entity.Users;
+import Halms.Watson.repository.ServiceRepository;
 import Halms.Watson.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.querydsl.ListQuerydslPredicateExecutor;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -23,6 +26,7 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final ServiceRepository serviceRepository;
 
     @RequestMapping(value = "/order-submit-action")
     public String CreateOrder ( @ModelAttribute("client") Clients client, BindingResult bindingResult, ModelMap model){
@@ -35,8 +39,10 @@ public class OrderController {
     }
 
     @RequestMapping("/order-submit")
-    public String getOrderSubmitPage(ModelMap model) {
+    public String getOrderSubmitPage(Model model) {
         model.addAttribute("client", new Clients());
+        List<Service> services = serviceRepository.findAll();
+        model.addAttribute("services", services);
         return "order-submit";
     }
 

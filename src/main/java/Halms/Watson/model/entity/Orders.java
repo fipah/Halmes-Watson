@@ -36,6 +36,8 @@ public class Orders {
     OffsetDateTime completedDate;
 
     @ManyToOne
-
     Users user;
+
+    @ManyToOne
+    Service service;
 }
