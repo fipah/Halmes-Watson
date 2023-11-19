@@ -54,7 +54,7 @@ public class OrderController {
         return "client-order";
     }
 
-    @DeleteMapping("/order/{id}")
+    @PostMapping("/order/{id}/deletion")
     String deleteOrder(@PathVariable Long id) {
         Users principal = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         orderService.deleteByIdAndUserId(id, principal.getId());
