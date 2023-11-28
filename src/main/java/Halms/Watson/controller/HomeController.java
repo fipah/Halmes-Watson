@@ -1,8 +1,11 @@
 package Halms.Watson.controller;
 
 import Halms.Watson.model.Role;
+import Halms.Watson.model.dto.OrderDTO;
+import Halms.Watson.model.entity.Profile;
 import Halms.Watson.model.entity.SecretAnswer;
 import Halms.Watson.model.entity.Users;
+import Halms.Watson.repository.ProfileRepository;
 import Halms.Watson.repository.SecretAnswerRepository;
 import Halms.Watson.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,12 +14,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -33,9 +41,10 @@ public class HomeController {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final SecretAnswerRepository secretAnswerRepository;
+    private final ProfileRepository profileRepository;
 
     @GetMapping
-    public String openIndex(){
+    public String openIndex() {
         return "home";
     }
 
@@ -54,6 +63,38 @@ public class HomeController {
         return "recoverypage";
     }
 
+    @GetMapping("/edit-profile")
+    public String editProfile(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        Profile users = profileRepository.findByUsername(username).get();
+        model.addAttribute("user", users);
+        return "edit-profile";
+    }
+
+    @PostMapping("/edit-profile")
+    public String editProfile(Profile profile) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        Profile users = profileRepository.findByUsername(username).get();
+        users.setCity(profile.getCity());
+        users.setAddress(profile.getAddress());
+        users.setPhoneNumber(profile.getPhoneNumber());
+        users.setFullName(profile.getFullName());
+        profileRepository.save(users);
+        return "redirect:profile";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        Profile users = profileRepository.findByUsername(username).get();
+        model.addAttribute("user", users);
+        return "profile";
+    }
+
 //    @GetMapping("/orders")
 //    public String orders() {
 //        return "client-order";
@@ -67,7 +108,7 @@ public class HomeController {
     @PostMapping(
             value = "/register",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = {
-            MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
+            MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}
     )
     @Transactional
     public String addUser(@RequestParam Map<String, String> body) {
@@ -75,6 +116,9 @@ public class HomeController {
             return "register";
         }
         if (userRepository.findByUsername(body.get("username")).isEmpty()) {
+            Profile profile = new Profile();
+            profile.setUsername(body.get("username"));
+            profileRepository.save(profile);
             var user = new Users();
             user.setUsername(body.get("username"));
             user.setPassword(passwordEncoder.encode(body.get("password")));
@@ -94,7 +138,7 @@ public class HomeController {
     @PostMapping(
             value = "/recoverypage",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = {
-            MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
+            MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}
     )
     @Transactional
     public String recoverPassword(@RequestParam Map<String, String> body) {
@@ -119,10 +163,13 @@ public class HomeController {
     @PostMapping(
             value = "/register/employee",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = {
-            MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
+            MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}
     )
     public void addEmployee(@RequestParam Map<String, String> body) {
         if (userRepository.findByUsername(body.get("username")).isEmpty()) {
+            Profile profile = new Profile();
+            profile.setUsername(body.get("username"));
+            profileRepository.save(profile);
             var user = new Users();
             user.setUsername(body.get("username"));
             user.setPassword(passwordEncoder.encode(body.get("password")));
@@ -130,6 +177,7 @@ public class HomeController {
             userRepository.save(user);
         }
     }
+
     private String getErrorMessage(HttpServletRequest request, String key) {
         Exception exception = (Exception) request.getSession().getAttribute(key);
         String error = "";

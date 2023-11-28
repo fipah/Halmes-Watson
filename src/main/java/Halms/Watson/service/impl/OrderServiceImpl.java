@@ -41,12 +41,12 @@ public class OrderServiceImpl implements OrderService {
         Users users = byUsername.get();
         Orders orders = new Orders();
         orders.setUser(users);
-        Halms.Watson.model.entity.Service service = serviceRepository.findById(clients.getServiceId()).get();
+        Halms.Watson.model.entity.Service service = serviceRepository.findByName(clients.getService());
         orders.setService(service);
         OrderStatus statusByCode = orderStatusRepository.getStatusByCode(OrderStatusEnum.NEW);
         orders.setOrderStatus(statusByCode);
         orders.setClientName(users.getName());
-        orders.setPrice(clients.getPrice());
+        orders.setPrice(null);
         orders.setDescription(clients.getDescription());
         orderRepository.save(orders);
     }

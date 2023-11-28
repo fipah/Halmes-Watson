@@ -46,6 +46,8 @@ public class OrderController {
         return "order-submit";
     }
 
+    @RequestMapping("/orders-employee")
+    public String ordersEmployee(){ return "orders-employee";}
 
     @RequestMapping("/client-order")
     String getClientOrders(Model model ) {

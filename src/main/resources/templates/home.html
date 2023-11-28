@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head>
         <meta charset="utf-8" />
         <title>Mito - Bootstrap5 Responsive Landing</title>
@@ -37,7 +37,7 @@
         <nav class="navbar navbar-expand-lg fixed-top navbar-white navbar-custom nav-light sticky" id="navbar">
             <div class="container">
                 <!-- LOGO -->
-                <a class="navbar-brand text-uppercase" href="../content/home.html">
+                <a class="navbar-brand text-uppercase" th:href="@{'/home'}">
                     <img class="logo-light" src="../content/images/logo-light.png" alt="" height="24">
                     <img class="logo-dark" src="../content/images/logo-dark.png" alt="" height="24">
                 </a>
@@ -51,28 +51,33 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav" id="navbar-navlist">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#home">Home</a>
+                            <a class="nav-link active" href="#home">Главная</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#service">Service</a>
+                            <a class="nav-link" href="#service">Услуги</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#team">Team</a>
+                            <a class="nav-link" href="#team">Команда</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#faqs">FAQS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#pricing">Pricing</a>
+                            <a class="nav-link" href="#pricing">Контакты</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mb-3 mb-lg-0" href="#contact">Contact</a>
+                            <a class="nav-link mb-3 mb-lg-0" th:href="@{'/profile'}">Профиль</a>
                         </li>
                     </ul>
                     <!-- Button trigger modal -->
-                    <a th:href="@{'/login'}"><button type="button" class="btn btn-primary nav-btn" >
+                    <a th:href="@{'/login'}" sec:authorize="isAnonymous()"><button type="button" class="btn btn-primary nav-btn">
                         Log in
                     </button></a>
+                    <form th:action="@{'/logout'}" sec:authorize="isAuthenticated()" method="post">
+                        <div class="form-group">
+                            <button class="btn btn-primary">logout</button>
+                        </div>
+                    </form>
                     <!-- Nav btn -->
                 </div>
             </div><!-- End container -->
@@ -778,242 +783,6 @@
             </div><!-- end container -->
         </section>
         <!-- End faqs -->
-
-        <!-- START pricing -->
-        <section class="section pricing" id="pricing">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="text-center">
-                            <div class="heading">
-                                <h2 class="mb-0">Pricing</h2>
-                                <div class="box first"></div>
-                            </div>
-                            <p class="text-muted">Pays for itself with with one saved invoice.</p>
-                        </div>
-                    </div><!-- end col-->
-                </div><!-- end row-->
-                <div class="row justify-content-center">
-                    <div class="col-xl-6">
-                        <div class="toggle-btn text-center pb-5 d-flex align-items-center justify-content-center">
-                            <div class="me-1 me-md-3 toggle-text">Monthly</div>
-                            <label class="switch">
-                              <input type="checkbox" id="checbox" onclick="check()" />
-                              <span class="slider round rounded-pill"></span>
-                            </label>
-                            <div class="ms-1 ms-md-3 toggle-text">Annually</div>
-                        </div>
-                    </div><!-- end col-->
-                </div>   <!-- end row--> 
-                <div class="row gy-4 justify-content-center">
-                    <div class="col-xl-10">
-                        <div class="row g-md-4">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card pricing-box h-100">
-                                    <div class="card-body p-0">
-                                        <div class="card-header">
-                                            <h6 class="fw-normal mb-3 text-white">Free Plan</h6>
-                                            <div class="d-flex align-items-end justify-content-start">
-                                                <div class="flex-shrink-0 pricing-price">
-                                                    <h1 class="mb-0 text1 text-white">$0</h1>
-                                                    <h1 class="mb-0 text2 text-white">$0</h1>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <p class="mb-0 ms-1 fs-14 text-white">/ Life Time</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="p-4">
-                                            <ul class="list-unstyled">
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>Today Planing & view</span>
-                                                    </i>
-                                                </li>
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>Checklist templates</span>
-                                                    </i>
-                                                </li>
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>Clander intergation</span>
-                                                    </i>
-                                                </li>
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>Browser extension</span>
-                                                    </i>
-                                                </li>
-                                            </ul>
-                                            <a href="javascript:void(0)" class="btn btn-primary pricing-btn rounded-pill">Get started</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end col-->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card pricing-box h-100 active-price">
-                                    <div class="card-body p-0">
-                                        <div class="positin-relative">
-                                            <span class="lable-name text-uppercase">Popular</span>
-                                        </div>
-                                        <div class="card-header">
-                                            <h6 class="fw-normal mb-3 text-white">Besic Plan</h6>
-                                            <div class="d-flex align-items-end justify-content-start">
-                                                <div class="flex-shrink-0 pricing-price">
-                                                    <h1 class="mb-0 text1 text-white">$30</h1>
-                                                    <h1 class="mb-0 text2 text-white">$10</h1>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <p class="mb-0 ms-1 fs-14 text2 text-white">/ Per Month</p>
-                                                    <p class="mb-0 ms-1 fs-14 text1 text-white">/ Annually</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="p-4">
-                                            <ul class="list-unstyled">
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>Everithing in Free</span>
-                                                    </i>
-                                                </li>
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>Checklist templates</span>
-                                                    </i>
-                                                </li>
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>Premium intergation</span>
-                                                    </i>
-                                                </li>
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>30-Day trial</span>
-                                                    </i>
-                                                </li>
-                                            </ul>
-                                            <a href="javascript:void(0)" class="btn btn-primary pricing-btn rounded-pill">Get started</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end col-->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card pricing-box h-100">
-                                    <div class="card-body p-0">
-                                        <div class="card-header">
-                                            <h6 class="fw-normal mb-3 text-white">Advance Plan</h6>
-                                            <div class="d-flex align-items-end justify-content-start">
-                                                <div class="flex-shrink-0 pricing-price">
-                                                    <h1 class="mb-0 text1 text-white">$100</h1>
-                                                    <h1 class="mb-0 text2 text-white">$50</h1>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <p class="mb-0 ms-1 fs-14 text2 text-white">/ Per Month</p>
-                                                    <p class="mb-0 ms-1 fs-14 text1 text-white">/ Annually</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="p-4">
-                                            <ul class="list-unstyled">
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>Everithing in Basic</span>
-                                                    </i>
-                                                </li>
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>Unlimited members</span>
-                                                    </i>
-                                                </li>
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>dedicated support</span>
-                                                    </i>
-                                                </li>
-                                                <li class="list-text">
-                                                    <i class="mdi mdi-checkbox-marked-circle">
-                                                        <span>All Advance Featuers</span>
-                                                    </i>
-                                                </li>
-                                            </ul>
-                                            <a href="javascript:void(0)" class="btn btn-primary pricing-btn rounded-pill">Get started</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end col-->
-                        </div><!-- end row-->
-                    </div><!-- end col-->
-                </div><!-- end row-->
-            </div><!-- end container-->
-        </section>
-        <!-- END pricing -->
-
-        <!-- Start contact -->
-        <section class="section contact" id="contact">
-            <div class="bg-overlay"></div>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-9">
-                        <div class="row align-items-center gy-3">
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-body p-0">
-                                        <div class="social-list">
-                                            <h6 class="mb-0">Let's Get</h6>
-                                            <h3 class="fw-semibold">Started</h3>
-                                            <div class="d-sm-flex card-text">
-                                                <p class="me-4 mb-0">Reach up</p>
-                                                <a class="text-white" href="javascript:void(0)"><i class="mdi mdi-phone-outline me-2"></i>408.409.6483</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end col-->
-                            <div class="col-lg-6">
-                                <form method="post" onsubmit="return validateForm()" class="contact-form" name="myForm" id="myForm">
-                                    <span id="error-msg"></span>
-                                    <div class="row rounded-3 py-3">
-                                        <div class="col-lg-12">
-                                            <div class="position-relative mb-3">
-                                                <span class="input-group-text"><i class="mdi mdi-account-outline"></i></span>
-                                                <input name="name" id="name" type="text" class="form-control" placeholder="Enter your name*">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="position-relative mb-3">
-                                                <span class="input-group-text"><i class="mdi mdi-email-outline"></i></span>
-                                                <input id="email" type="password" class="form-control" placeholder="Enter your email*">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="position-relative mb-3">
-                                                <span class="input-group-text"><i class="mdi mdi-file-document-outline"></i></span>
-                                                <input name="subject" id="subject" type="text" class="form-control" placeholder="Subject">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="position-relative mb-3">
-                                            <span class="input-group-text align-items-start"><i class="mdi mdi-comment-text-outline"></i></span>
-                                                <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Enter your message*"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="text-end">
-                                                <input type="submit" id="submit" name="send" class="btn btn-primary" value="Send Message">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                <!--end form-->
-                            </div><!--end col-->
-                        </div><!--end row-->
-                    </div>
-                </div>
-            </div><!--end container-->
-        </section>
-        <!-- End contact -->
 
         <!-- START FOOTER -->
         <footer class="section footer">

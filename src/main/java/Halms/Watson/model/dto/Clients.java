@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 public class Clients {
     String clientName;
     String description;
+    String service;
     Long price;
-
     Long serviceId;
 }

@@ -1,7 +1,9 @@
 package Halms.Watson.controller;
 
 import Halms.Watson.model.Role;
+import Halms.Watson.model.entity.Profile;
 import Halms.Watson.model.entity.Users;
+import Halms.Watson.repository.ProfileRepository;
 import Halms.Watson.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +20,7 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ProfileRepository profileRepository;
 
 
     @PostMapping("/")
@@ -34,6 +37,9 @@ public class UserController {
     @GetMapping("/create-users")
     void createUsers() {
         if (userRepository.findByUsername("admin").isEmpty()) {
+            Profile profile = new Profile();
+            profile.setUsername("admin");
+            profileRepository.save(profile);
             var user = new Users();
             user.setUsername("admin");
             user.setPassword(passwordEncoder.encode("secret"));
@@ -42,6 +48,12 @@ public class UserController {
         }
 
         if (userRepository.findByUsername("user").isEmpty()) {
+            Profile profile = new Profile();
+            profile.setUsername("user");
+            profile.setCity("Almaty");
+            profile.setAddress("Dostyk");
+            profile.setPhoneNumber("88005553535");
+            profileRepository.save(profile);
             var user = new Users();
             user.setUsername("user");
             user.setPassword(passwordEncoder.encode("secret"));
@@ -49,4 +61,5 @@ public class UserController {
             userRepository.save(user);
         }
     }
+
 }
