@@ -1,6 +1,7 @@
 package Halms.Watson.repository;
 
 import Halms.Watson.model.entity.Orders;
+import Halms.Watson.model.enums.OrderStatusEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -28,4 +29,11 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
     Long countPaymentForLastSevenDaysWithBonuses(String username);
 
     Orders findByIdAndUserUsername(Long orderId, String userId);
+
+    @Query(value = """
+    with employee as (select id from users where username = :username),
+    order_status as (select id from order_status where code = :orderStatusEnum)
+    select count(*) from orders where employee_id = (select id from employee) and order_status_id = (select id from order_status)
+""", nativeQuery = true)
+    Long getCountByStatusAndEmployeeUsername(OrderStatusEnum orderStatusEnum, String username);
 }

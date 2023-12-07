@@ -3,9 +3,11 @@ package Halms.Watson.controller;
 import Halms.Watson.constants.ContentTypeConsts;
 import Halms.Watson.model.Role;
 import Halms.Watson.model.dto.ProfileDto;
+import Halms.Watson.model.entity.OrderStatus;
 import Halms.Watson.model.entity.Profile;
 import Halms.Watson.model.entity.SecretAnswer;
 import Halms.Watson.model.entity.Users;
+import Halms.Watson.model.enums.OrderStatusEnum;
 import Halms.Watson.repository.OrderRepository;
 import Halms.Watson.repository.ProfileRepository;
 import Halms.Watson.repository.SecretAnswerRepository;
@@ -13,6 +15,7 @@ import Halms.Watson.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -73,7 +77,7 @@ public class HomeController {
         return "edit-profile";
     }
 
-    @PostMapping("/edit-profile")
+    @PostMapping(value = "/edit-profile", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public String editProfile(ProfileDto profile) throws IOException {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();
@@ -101,9 +105,14 @@ public class HomeController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();
         Profile users = profileRepository.findByUsername(username).get();
-        Long salary = orderRepository.countPaymentForLastSevenDaysWithBonuses(username);
+        Collection<GrantedAuthority> authorities = user.getAuthorities();
+        if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("EMPLOYEE"))) {
+            Long salary = orderRepository.countPaymentForLastSevenDaysWithBonuses(username);
+            model.addAttribute("salary", salary);
+            Long inProgressCount = orderRepository.getCountByStatusAndEmployeeUsername(OrderStatusEnum.IN_PROGRESS, username);
+            model.addAttribute("inProgressCount", inProgressCount);
+        }
         model.addAttribute("user", users);
-        model.addAttribute("salary", salary);
         return "profile";
     }
 
