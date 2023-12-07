@@ -37,7 +37,7 @@ public class OrderController {
     private final OrderService orderService;
     private final ServiceRepository serviceRepository;
 
-    @RequestMapping(value = "/order-submit-action")
+    @RequestMapping(value = "/order-submit-action", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public String CreateOrder (@ModelAttribute("client") Clients client, BindingResult bindingResult, ModelMap model) throws IOException {
         if (bindingResult.hasErrors()) {
             return "order-submit";
