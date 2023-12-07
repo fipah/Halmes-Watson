@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,36 +24,36 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         } body {
-              background: rgb(99, 39, 120)
+              background: rgb(75, 170, 233)
           }
 
         .form-control:focus {
             box-shadow: none;
-            border-color: #BA68C8
+            border-color: #4baae9
         }
 
         .profile-button {
-            background: rgb(99, 39, 120);
+            background: rgb(75, 170, 233);
             box-shadow: none;
             border: none
         }
 
         .profile-button:hover {
-            background: #682773
+            background: #4baae9
         }
 
         .profile-button:focus {
-            background: #682773;
+            background: #4baae9;
             box-shadow: none
         }
 
         .profile-button:active {
-            background: #682773;
+            background: #4baae9;
             box-shadow: none
         }
 
         .back:hover {
-            color: #682773;
+            color: #4baae9;
             cursor: pointer
         }
 
@@ -62,47 +62,71 @@
         }
 
         .add-experience:hover {
-            background: #BA68C8;
+            background: #4baae9;
             color: #fff;
             cursor: pointer;
-            border: solid 1px #BA68C8
+            border: solid 1px #4baae9
         }</style>
 </head>
 <body classname="snippet-body">
 <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                </div>
             </div>
             <div class="col-md-5 border-right">
+
                 <div class="p-3 py-5">
+                    <div class="d-flex justify-content-center align-items-center experience">
+                        <a th:href="@{'/'}" class="btn btn-primary profile-button">Вернуться на главную страницу</a>
+                    </div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Профиль</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Ваше Имя:</label><p class="form-control" th:text="${user.getFullName()}"></p></div>
-                        <div class="col-md-6"><label class="labels">Ваш логин:</label><p class="form-control" th:text="${user.getUsername()}"></p></div>
+                        <div class="col-md-6"><label class="labels">Ваше Имя:</label><input type="text" class="form-control" th:value="${user.getFullName()}" readonly></div>
+                        <div class="col-md-6"><label class="labels">Ваш логин:</label><input class="form-control" th:value="${user.getUsername()}" readonly></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Номер телефона:</label><p class="form-control" th:text="${user.getPhoneNumber()}"></div>
-                        <div class="col-md-12"><label class="labels">Город: </label><p class="form-control" th:text="${user.getCity()}"></div>
-                        <div class="col-md-12"><label class="labels">Адрес:</label><p class="form-control" th:text="${user.getAddress()}"></div>
+                        <div class="col-md-12"><label class="labels">Номер телефона:</label><input type="text" class="form-control" th:value="${user.getPhoneNumber()}" readonly></div>
+                        <div class="col-md-12"><label class="labels">Город: </label><input type="text" class="form-control" th:value="${user.getCity()}" readonly></div>
+                        <div class="col-md-12"><label class="labels">Адрес:</label><input type="text" class="form-control" th:value="${user.getAddress()}" readonly></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Country</label><p class="form-control" placeholder="country" value=""></div>
-                        <div class="col-md-6"><label class="labels">State/Region</label><p class="form-control" value="" placeholder="state"></div>
+                        <div class="col-md-6"> </div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center experience">
+                        <a th:href="@{'/edit-profile'}" class="btn btn-primary profile-button">Изменить данные</a>
                     </div>
                 </div>
+
             </div>
             <div class="col-md-4">
                 <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                    <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                    <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+
+                    <div sec:authorize="hasRole('ROLE_USER')">
+                    <div class="d-flex justify-content-center align-items-center experience">
+                        <a th:href="@{'/orders/client-order'}" class="btn btn-primary profile-button">Мои Заказы</a>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center experience">
+                        <div class="row mt-3">
+                            <div class="col-md-12"><label class="labels">Номер телефона:</label><input type="text" class="form-control" th:value="${user.getPhoneNumber()}" readonly></div>
+                            <div class="col-md-12"><label class="labels">Город: </label><input type="text" class="form-control" th:value="${user.getCity()}" readonly></div>
+                            <div class="col-md-12"><label class="labels">Адрес:</label><input type="text" class="form-control" th:value="${user.getAddress()}" readonly></div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div sec:authorize="hasRole('ROLE_EMPLOYEE')">
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">Количество выполненных заказов: </label><input type="text" class="form-control" th:value="${salary}" readonly></div>
+                            <div class="col-md-6"><label class="labels">Зарплата:</label><input type="text" class="form-control" th:value="${salary}" readonly></div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="mt-5 text-center">
-                <a th:href="@{'/edit-profile'}" class="btn btn-primary profile-button">Изменить данные</a>
             </div>
         </div>
     </div>

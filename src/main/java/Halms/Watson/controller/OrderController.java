@@ -29,7 +29,7 @@ public class OrderController {
     private final ServiceRepository serviceRepository;
 
     @RequestMapping(value = "/order-submit-action")
-    public String CreateOrder ( @ModelAttribute("client") Clients client, BindingResult bindingResult, ModelMap model){
+    public String CreateOrder (@ModelAttribute("client") Clients client, BindingResult bindingResult, ModelMap model){
         if (bindingResult.hasErrors()) {
             return "order-submit";
         }
@@ -47,7 +47,11 @@ public class OrderController {
     }
 
     @RequestMapping("/orders-employee")
-    public String ordersEmployee(){ return "orders-employee";}
+    public String ordersEmployee(Model model){
+        List<OrderDTO> orders = orderService.getAllOrders();
+        model.addAttribute("orders", orders);
+        return "orders-employee";
+    }
 
     @RequestMapping("/client-order")
     String getClientOrders(Model model ) {
@@ -58,9 +62,14 @@ public class OrderController {
 
     @PostMapping("/order/{id}/deletion")
     String deleteOrder(@PathVariable Long id) {
-        Users principal = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        orderService.deleteByIdAndUserId(id, principal.getId());
-        return "client-order";
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        orderService.deleteByIdAndUserId(id, user.getUsername());
+        return "redirect:../../client-order";
+    }
+    @PostMapping("/orders-employee/{id}/deletion")
+    String employeeDeleteOrder(@PathVariable Long id){
+        orderService.deleteById(id);
+        return "redirect:../../orders-employee";
     }
 
 
@@ -74,10 +83,11 @@ public class OrderController {
         return orderService.getOrder(id);
     }
 
-    @PutMapping("/{id}/approve")
-    void approveOrder(@PathVariable Long id) {
-        Users principal = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        orderService.approveOrder(id, principal.getId());
+    @PostMapping("/{id}/approve")
+    String approveOrder(@PathVariable Long id) {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        orderService.approveOrder(id, principal.getUsername());
+        return "redirect:../orders-employee";
     }
 
     @PutMapping("/{id}/complete")

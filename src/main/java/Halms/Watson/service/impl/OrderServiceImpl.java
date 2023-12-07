@@ -11,7 +11,6 @@ import Halms.Watson.repository.*;
 import Halms.Watson.service.OrderService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -41,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
         Users users = byUsername.get();
         Orders orders = new Orders();
         orders.setUser(users);
+        System.out.println(clients.getService());
         Halms.Watson.model.entity.Service service = serviceRepository.findByName(clients.getService());
         orders.setService(service);
         OrderStatus statusByCode = orderStatusRepository.getStatusByCode(OrderStatusEnum.NEW);
@@ -64,13 +64,14 @@ public class OrderServiceImpl implements OrderService {
         dto.setId(orders.getId());
         dto.setDescription(orders.getDescription());
         dto.setPrice(orders.getPrice());
+        dto.setService(orders.getService().getName());
         dto.setStatus(orders.getOrderStatus().getCode());
         dto.setClientName(orders.getUser().getName());
         EmployeeDTO employeeDTO = new EmployeeDTO();
         if (Objects.nonNull(orders.getEmployee())) {
             employeeDTO.setId(orders.getEmployee().getId());
             employeeDTO.setName(orders.getEmployee().getName());
-            employeeDTO.setAvatarUrl(orders.getEmployee().getAvatarUrl());
+
             dto.setAssignedEmployee(employeeDTO);
         }
         dto.setCompletedDate(orders.getCompletedDate());
@@ -84,9 +85,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void approveOrder(Long id, Long userId) {
+    public void approveOrder(Long id, String userId) {
         Orders orders = orderRepository.findById(id).orElse(null);
+        if (Objects.isNull(orders)) {
+            return;
+        }
+        OrderStatus statusByCode = orderStatusRepository.getStatusByCode(OrderStatusEnum.IN_PROGRESS);
+        orders.setOrderStatus(statusByCode);
+        Optional<Users> byId = userRepository.findByUsername(userId);
+        orders.setEmployee(byId.get());
 
+        orderRepository.save(orders);
     }
 
     @Override
@@ -111,8 +120,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteByIdAndUserId(Long orderId, Long userId) {
-        Orders order = orderRepository.findByIdAndUserId(orderId, userId);
+    public void deleteByIdAndUserId(Long orderId, String userId) {
+        Orders order = orderRepository.findByIdAndUserUsername(orderId, userId);
         if (Objects.isNull(order) ||
                 order.getOrderStatus().getCode().equals(OrderStatusEnum.COMPLETED) ||
                 order.getOrderStatus().getCode().equals(OrderStatusEnum.IN_PROGRESS)) {
@@ -120,5 +129,10 @@ public class OrderServiceImpl implements OrderService {
         }
 
         orderRepository.delete(order);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        orderRepository.deleteById(id);
     }
 }

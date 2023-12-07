@@ -36,10 +36,12 @@ public class WebSecurityConfig {
                                 .requestMatchers("/content/**").permitAll()
                                 .requestMatchers("/recoverypage").permitAll()
                                 .requestMatchers("/v1/users/create-users").permitAll()
+                                .requestMatchers("/login-error").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()
+                        .failureUrl("/login-error")
                 )
                 .logout(logout -> {
                     logout.logoutSuccessUrl("/").permitAll();

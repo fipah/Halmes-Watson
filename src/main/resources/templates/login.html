@@ -36,6 +36,13 @@
                                 <form th:action="@{'/login'}" method="post">
                                     <div class="row">
                                         <div class="col-12">
+                                            <div class="mb-2">
+                                                <div th:if="${error}" class="error-message">
+                                                    <b th:text="${error}" class="alert-danger"></b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
                                             <div class="mb-3">
                                                 <label class="mb-2" for="username">Логин</label>
                                                 <input type="text" class="form-control" name="username" id="username" placeholder="Имя пользователя">

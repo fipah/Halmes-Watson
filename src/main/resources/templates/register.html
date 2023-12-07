@@ -34,7 +34,7 @@
                             <p class="text-muted">Зарегистрируйтесь чтобы продолжить</p>
                             <span class="text-primary">Holmes & Watson</span>
                         </div>
-                        <form  th:action="@{'/register'}" method="post">
+                        <form th:action="@{'/register'}" method="post">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-2">
@@ -46,6 +46,13 @@
                                     <div class="mb-2">
                                         <label class="mb-2" for="username">Придумайте логин:</label>
                                         <input type="text" class="form-control" name="username" id="username" placeholder="Логин">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-2">
+                                <div th:if="${error}" class="error-message">
+                                    <b th:text="${error}" class="alert-danger"></b>
+                                </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -72,6 +79,7 @@
                                         <label class="form-check-label" for="auth-remember-check">Запомнить меня</label>
                                     </div>
                                 </div>
+
                                 <div class="col-sm-6">
                                     <div class="text-sm-end">
                                         <a th:href="@{'/recoverypage'}" class="text-muted fs-13"><i class="mdi mdi-lock me-1"></i> Забыли пароль?</a>

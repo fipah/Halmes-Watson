@@ -14,16 +14,18 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
     List<Orders> findAllByUsername(String username);
 
     @Query(value = """
-                with completed_orders as (
-                select id, price * 0.3 as reward
-                from orders
-                where
-                employee_id = :employeeId
-                and order_status_id = 3
-                and extract(week from completed_date) = extract(week from now()))
-                select case when count(*) > 2 then sum(reward) + (count(*)-2)*1000 else sum(reward) end from completed_orders
+                with user_id as (select id from users where username = :username),
+                                completed_orders as (
+                                select o.id, s.price * 0.3 as reward
+                                from orders o
+                                join service s on s.id = o.service_id
+                                where
+                                employee_id = (select id from user_id)
+                                and order_status_id = 3
+                                and extract(week from completed_date) = extract(week from now()))
+                                select case when count(*) > 2 then sum(reward) + (count(*)-2)*1000 else sum(reward) end from completed_orders
             """, nativeQuery = true)
-    Long countPaymentForLastSevenDaysWithBonuses(Long employeeId);
+    Long countPaymentForLastSevenDaysWithBonuses(String username);
 
-    Orders findByIdAndUserId(Long orderId, Long userId);
+    Orders findByIdAndUserUsername(Long orderId, String userId);
 }

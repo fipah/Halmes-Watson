@@ -5,6 +5,7 @@ import Halms.Watson.model.dto.OrderDTO;
 import Halms.Watson.model.entity.Profile;
 import Halms.Watson.model.entity.SecretAnswer;
 import Halms.Watson.model.entity.Users;
+import Halms.Watson.repository.OrderRepository;
 import Halms.Watson.repository.ProfileRepository;
 import Halms.Watson.repository.SecretAnswerRepository;
 import Halms.Watson.repository.UserRepository;
@@ -42,6 +43,7 @@ public class HomeController {
     private final UserRepository userRepository;
     private final SecretAnswerRepository secretAnswerRepository;
     private final ProfileRepository profileRepository;
+    private final OrderRepository orderRepository;
 
     @GetMapping
     public String openIndex() {
@@ -85,13 +87,15 @@ public class HomeController {
         return "redirect:profile";
     }
 
+
     @GetMapping("/profile")
     public String profile(Model model) {
-
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();
         Profile users = profileRepository.findByUsername(username).get();
+        Long salary = orderRepository.countPaymentForLastSevenDaysWithBonuses(username);
         model.addAttribute("user", users);
+        model.addAttribute("salary", salary);
         return "profile";
     }
 
@@ -111,11 +115,13 @@ public class HomeController {
             MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}
     )
     @Transactional
-    public String addUser(@RequestParam Map<String, String> body) {
+    public String addUser(@RequestParam Map<String, String> body, @RequestParam String username, Model model) {
+
         if (!body.get("password").equals(body.get("confirmPassword"))) {
             return "register";
         }
-        if (userRepository.findByUsername(body.get("username")).isEmpty()) {
+        Optional<Users> username1 = userRepository.findByUsername(body.get("username"));
+        if (username1.isEmpty()) {
             Profile profile = new Profile();
             profile.setUsername(body.get("username"));
             profileRepository.save(profile);
@@ -130,9 +136,17 @@ public class HomeController {
             Users save = userRepository.save(user);
             secretAnswer.setUser(save);
             secretAnswerRepository.save(secretAnswer);
+            return "login";
         }
+            model.addAttribute("error", "Пользователь с таким логином уже существует");
+            return "register";
 
-        return "home";
+    }
+
+    @GetMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("error", "Неправильный логин или пароль");
+        return "login";
     }
 
     @PostMapping(
@@ -178,17 +192,17 @@ public class HomeController {
         }
     }
 
-    private String getErrorMessage(HttpServletRequest request, String key) {
-        Exception exception = (Exception) request.getSession().getAttribute(key);
-        String error = "";
-        if (exception instanceof BadCredentialsException) {
-            error = "Invalid username and password!";
-        } else if (exception instanceof LockedException) {
-            error = exception.getMessage();
-        } else {
-            error = "Invalid username and password!";
-        }
-        return error;
-    }
+//    private String getErrorMessage(HttpServletRequest request, String key) {
+//        Exception exception = (Exception) request.getSession().getAttribute(key);
+//        String error = "Неправильный логин или пароль";
+//        if (exception instanceof BadCredentialsException) {
+//            error = "Invalid username and password!";
+//        } else if (exception instanceof LockedException) {
+//            error = exception.getMessage();
+//        } else {
+//            error = "Invalid username and password!";
+//        }
+//        return error;
+//    }
 
 }

@@ -14,11 +14,13 @@ public interface OrderService {
 
     OrderDTO getOrder(Long id);
 
-    void approveOrder(Long id, Long userId);
+    void approveOrder(Long id, String userId);
 
     Orders completeOrder(Long id);
 
     List<OrderDTO> getAllOrdersByUser();
 
-    void deleteByIdAndUserId(Long id, Long userId);
+    void deleteByIdAndUserId(Long id, String userId);
+
+    void deleteById(Long id);
 }

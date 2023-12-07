@@ -29,7 +29,7 @@ public class Orders {
     OrderStatus orderStatus;
 
     @OneToOne
-    Employee employee;
+    Users employee;
 
     OffsetDateTime createdDate = OffsetDateTime.now();
 
@@ -37,6 +37,7 @@ public class Orders {
 
     @ManyToOne
     Users user;
+
 
     @ManyToOne
     Service service;

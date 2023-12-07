@@ -34,6 +34,7 @@ public class UserController {
 //    }
 
 
+
     @GetMapping("/create-users")
     void createUsers() {
         if (userRepository.findByUsername("admin").isEmpty()) {
@@ -44,7 +45,9 @@ public class UserController {
             user.setUsername("admin");
             user.setPassword(passwordEncoder.encode("secret"));
             user.setRole(Role.ROLE_ADMIN);
+            user.setName("");
             userRepository.save(user);
+
         }
 
         if (userRepository.findByUsername("user").isEmpty()) {
@@ -58,6 +61,7 @@ public class UserController {
             user.setUsername("user");
             user.setPassword(passwordEncoder.encode("secret"));
             user.setRole(Role.ROLE_USER);
+            user.setName("");
             userRepository.save(user);
         }
     }

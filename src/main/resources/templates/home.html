@@ -30,14 +30,54 @@
         <!-- css -->
         <link rel="stylesheet" href="../content/css/style.min.css" type="text/css" />
 
-
     </head>
     <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="71">
+    <!--employee navbar-->
+    <div sec:authorize="hasRole('ROLE_EMPLOYEE')">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-white navbar-custom nav-light sticky" id="navbar" style="background-color: #333; color: #fff;">
+            <div class="container">
+                <!-- LOGO -->
+                <a class="navbar-brand text-uppercase" th:href="@{'/'}">
+                    <img class="logo-light" src="../content/images/logo-light.png" alt="" height="24">
+                    <img class="logo-dark" src="../content/images/logo-dark.png" alt="" height="24">
+                </a>
 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="mdi mdi-menu"></span>
+                    <!-- toggle button -->
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav" id="navbar-navlist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{'/orders/orders-employee'}">Доступные заказы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mb-3 mb-lg-0" th:href="@{'/profile'}">Личный кабинет</a>
+                        </li>
+                    </ul>
+
+                    <a th:href="@{'/login'}" sec:authorize="isAnonymous()"><button type="button" class="btn btn-primary nav-btn">Войти</button></a>
+                    <form th:action="@{'/logout'}" sec:authorize="isAuthenticated()" method="post">
+                        <div class="form-group"><button class="btn btn-danger nav-btn">Выйти</button></div>
+                    </form>
+                    <!-- Nav btn -->
+                </div>
+            </div><!-- End container -->
+        </nav>
+    </div>
+    <!--end employee navbar-->
+
+
+    <div sec:authorize="!hasRole('ROLE_EMPLOYEE')">
         <nav class="navbar navbar-expand-lg fixed-top navbar-white navbar-custom nav-light sticky" id="navbar">
             <div class="container">
                 <!-- LOGO -->
-                <a class="navbar-brand text-uppercase" th:href="@{'/home'}">
+                <a class="navbar-brand text-uppercase" th:href="@{'/'}">
                     <img class="logo-light" src="../content/images/logo-light.png" alt="" height="24">
                     <img class="logo-dark" src="../content/images/logo-dark.png" alt="" height="24">
                 </a>
@@ -63,20 +103,16 @@
                             <a class="nav-link" href="#faqs">FAQS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#pricing">Контакты</a>
+                            <a class="nav-link" th:href="@{'/orders/order-submit'}">Создать заказ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mb-3 mb-lg-0" th:href="@{'/profile'}">Профиль</a>
+                            <a class="nav-link mb-3 mb-lg-0" th:href="@{'/profile'}">Личный кабинет</a>
                         </li>
                     </ul>
-                    <!-- Button trigger modal -->
-                    <a th:href="@{'/login'}" sec:authorize="isAnonymous()"><button type="button" class="btn btn-primary nav-btn">
-                        Log in
-                    </button></a>
+
+                    <a th:href="@{'/login'}" sec:authorize="isAnonymous()"><button type="button" class="btn btn-primary nav-btn">Войти</button></a>
                     <form th:action="@{'/logout'}" sec:authorize="isAuthenticated()" method="post">
-                        <div class="form-group">
-                            <button class="btn btn-primary">logout</button>
-                        </div>
+                        <div class="form-group"><button class="btn btn-danger nav-btn">Выйти</button></div>
                     </form>
                     <!-- Nav btn -->
                 </div>
@@ -96,10 +132,9 @@
                         </div><!-- end col --> 
                         <div class="col-lg-6">
                             <div class="home-text-area home-text-area-4">
-                                <span class="badge badge-lg bg-soft-primary text-uppercase mb-3">Your Growth</span>
-                                <h1 class="head-line text-uppercase">Elevant Your Brand With Mito </h1>
-                                <p class="home-caption text-white-50">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Dignssimos provident requste uisquam quia vel sint the mollitia  the Internet tend to repeat predefined chunks as necessary, making.</p>
+                                <span class="badge badge-lg bg-soft-primary text-uppercase mb-3">Лучший выбор</span>
+                                <h3 class="head-line text-uppercase">Детективное агенство Holmes & Watson</h3>
+                                <p class="home-caption text-white-50">На рынке уже больше 10 лет. больше 10000 раскрытых дел, Детективное агентство Holmes & Watson работает по всему Казахстану, ближнему и дальнему зарубежью.</p>
                                 <a href="#" class="play-button" data-bs-toggle="modal" data-bs-target="#watchvideomodal">
                                     <span class="play-icon">
                                         <i class="mdi mdi-play"></i>
@@ -138,11 +173,11 @@
                     <div class="col-lg-6">
                         <div class="text-center">
                             <div class="heading">
-                                <h2 class="mb-0">Service</h2>
+                                <h2 class="mb-0">Услуги</h2>
                                 <div class="box first">
                                 </div>
                             </div>
-                            <p class="text-muted">See the benefits you can get by working with our experts.</p>
+                            <p class="text-muted">Мы гарантируем полную конфиденциальность и анонимность обращения</p>
                         </div>
                     </div>
                     <!--end col-->
@@ -156,8 +191,8 @@
                                         <i class="mdi mdi-lightning-bolt"></i>
                                     </div>
                                     <div>
-                                        <h5>Strategy</h5>
-                                        <p class="mt-2 mb-0 text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                                        <h5>Розыск людей</h5>
+                                        <p class="mt-2 mb-0 text-muted">Розыск людей, которые пропали без вести, а также розыск родственников или знакомых, которые по той или иной причине утратили с вами связь – одно из ключевых направлений деятельности нашего агентства.</p>
                                     </div>
                                 </div><!--end process-box-->
                             </div><!--end col-->
@@ -167,8 +202,8 @@
                                         <i class="mdi mdi-arrow-decision-outline"></i>
                                     </div>
                                     <div>
-                                        <h5>Branding</h5>
-                                        <p class="mt-2 mb-0 text-muted">The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog.</p>
+                                        <h5>Наблюдение и слежка</h5>
+                                        <p class="mt-2 mb-0 text-muted">Детективы нашего агентства наблюдают за объектом в рабочее время, дабы выявить его распорядок дня, так же производят наблюдение в свободное от работы время, чтобы определить с кем общается объект, а также как передвигается по городу.</p>
                                     </div>
                                 </div><!--end process-box-->
                             </div><!--end col-->
@@ -178,8 +213,8 @@
                                         <i class="mdi mdi-chart-box-plus-outline"></i>
                                     </div>
                                     <div>
-                                        <h5>Design</h5>
-                                        <p class="mt-2 mb-0 text-muted">A wonderful serenity has taken possession of my entire soul, like these sweet </p>
+                                        <h5>Детектор лжи</h5>
+                                        <p class="mt-2 mb-0 text-muted">Если вы хотите убедиться в честности окружающих вас людей – проверка на детекторе лжи – то, что вам нужно. Главное, выбрать профессионалов, которые ее проведут.</p>
                                     </div>
                                 </div><!--end process-box-->
                             </div><!--end col-->
@@ -189,8 +224,8 @@
                                         <i class="mdi mdi-file-document-edit-outline"></i>
                                     </div>
                                     <div>
-                                        <h5>Marketing</h5>
-                                        <p class="mt-2 mb-0 text-muted">One morning, when Gregor Samsa woke from troubled dreams, he found himself</p>
+                                        <h5>Выявление неверности</h5>
+                                        <p class="mt-2 mb-0 text-muted">Если есть повод для недоверия - действуйте согласно обстоятельствам, и обращайтесь к людям, которые смогут раскрыть вам глаза на происходящее в вашей жизни.</p>
                                     </div>
                                 </div><!--end process-box-->
                             </div><!--end col-->
@@ -200,8 +235,8 @@
                                         <i class="mdi mdi-chart-box-plus-outline"></i>
                                     </div>
                                     <div>
-                                        <h5>Development</h5>
-                                        <p class="mt-2 mb-0 text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                                        <h5>Надежность</h5>
+                                        <p class="mt-2 mb-0 text-muted">Наши детективы обладают высшим юридическим образованием и большим стажем работы в органах.</p>
                                     </div>
                                 </div><!--end process-box-->
                             </div><!--end col-->
@@ -211,8 +246,8 @@
                                         <i class="mdi mdi-thumb-up-outline"></i>
                                     </div>
                                     <div>
-                                        <h5>Consulting</h5>
-                                        <p class="mt-2 mb-0 text-muted">But I must explain to you how all this mistaken idea of denouncing pleasure and.</p>
+                                        <h5>Профессионализм</h5>
+                                        <p class="mt-2 mb-0 text-muted">Цель нашей работы максимально оперативно и быстро выполнять заказы для клиентов.</p>
                                     </div>
                                 </div><!--end process-box-->
                             </div><!--end col-->
@@ -223,51 +258,6 @@
         </section>
         <!--end service-->
 
-        <!-- start cta -->
-        <section class="section cta-2">
-            <div class="bg-overlay"></div>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 col-md-4">
-                        <div class="mt-5 text-center">
-                            <h1 class="cta-heading">
-                                <span class="counter_value" data-target="3700">0</span>
-                                <span>k</span>
-                            </h1>
-                            <p class="cta-text">Investment Projects</p>
-                        </div>
-                    </div><!-- end col -->
-                    <div class="col-lg-3 col-md-4">
-                        <div class="mt-5 text-center">
-                            <h1 class="cta-heading">
-                                <span class="counter_value" data-target="160">0</span>
-                            </h1>
-                            <p class="cta-text">Years of Experience</p>
-                        </div>
-                    </div><!-- end col -->
-                    <div class="col-lg-3 col-md-4">
-                        <div class="mt-5 text-center">
-                            <h1 class="cta-heading">
-                                <span class="counter_value" data-target="600">0</span>
-                                <span>k</span>
-                            </h1>
-                            <p class="cta-text">Emplys</p>
-                        </div>
-                    </div><!-- end col -->
-                    <div class="col-lg-3 col-md-4">
-                        <div class="mt-5 text-center">
-                            <h1 class="cta-heading">
-                                <span class="counter_value" data-target="5000">0</span>
-                                <span>k</span>
-                            </h1>
-                            <p class="cta-text">Happy Clinets</p>
-                        </div>
-                    </div><!-- end col -->
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </section>
-        <!-- end cta -->
-        
         <!-- Start Team -->
         <section class="section team" id="team">
             <div class="container">
@@ -286,8 +276,8 @@
                                           <div class="team-img">
                                             <img class="img-fluid" src="../content/images/team/team1.png" alt="">
                                             <div class="img-text">
-                                                <h6>Marta Matković</h6>
-                                                <span class="text-white-50">Web designer</span>
+                                                <h6>Ураз Жантасов</h6>
+                                                <span class="text-white-50">Сыщик</span>
                                             </div>
                                           </div>
                                       </div>
@@ -295,12 +285,12 @@
                                           <div class="card h-100">
                                             <div class="team-heading">
                                                 <div data-aos="fade-left" data-aos-duration="2000">
-                                                    <h6>Marta</h6>
+                                                    <h6 style="margin-left: 16px">Ураз</h6>
                                                 </div>
                                             </div>
                                               <div class="card-body">
                                                   <div class="card-text">
-                                                    <h6>Designation</h6>
+                                                    <h6>Краткая информация</h6>
                                                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
                                                         Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur 
                                                         ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla</p>
@@ -346,8 +336,8 @@
                                         <div class="team-img">
                                           <img class="img-fluid" src="../content/images/team/team2.png" alt="">
                                           <div class="img-text">
-                                              <h6>Silvija Vučković</h6>
-                                              <span class="text-white-50">Web devloper</span>
+                                              <h6>Темирлан Заирова</h6>
+                                              <span class="text-white-50">Следователь</span>
                                           </div>
                                         </div>
                                     </div>
@@ -355,7 +345,7 @@
                                         <div class="card h-100">
                                           <div class="team-heading">
                                               <div data-aos="fade-left" data-aos-duration="2000">
-                                                  <h6>Silvija</h6>
+                                                  <h6 style="margin-left: 20px">Темир</h6>
                                               </div>
                                           </div>
                                             <div class="card-body">
@@ -406,8 +396,8 @@
                                         <div class="team-img">
                                           <img class="img-fluid" src="../content/images/team/team3.png" alt="">
                                           <div class="img-text">
-                                              <h6>Laura Rodrigues Pereira</h6>
-                                              <span class="text-white-50">Team Leader</span>
+                                              <h6>Годорожа Эдуард</h6>
+                                              <span class="text-white-50">Детектив</span>
                                           </div>
                                         </div>
                                     </div>
@@ -415,7 +405,7 @@
                                         <div class="card h-100">
                                           <div class="team-heading">
                                               <div data-aos="fade-left" data-aos-duration="2000">
-                                                  <h6>Laura</h6>
+                                                  <h6 style="margin-left: 18px">Эдик</h6>
                                               </div>
                                           </div>
                                             <div class="card-body">
@@ -466,8 +456,8 @@
                                         <div class="team-img">
                                           <img class="img-fluid" src="../content/images/team/team4.png" alt="">
                                           <div class="img-text">
-                                              <h6>Arthur Hjálmarsson</h6>
-                                              <span class="text-white-50">CEO</span>
+                                              <h6>Адиль Куанышевич</h6>
+                                              <span class="text-white-50">Полиграфист</span>
                                           </div>
                                         </div>
                                     </div>
@@ -475,7 +465,7 @@
                                         <div class="card h-100">
                                           <div class="team-heading">
                                               <div data-aos="fade-left" data-aos-duration="2000">
-                                                  <h6>Arthur</h6>
+                                                  <h6 style="margin-left: 19px">Адиль</h6>
                                               </div>
                                           </div>
                                             <div class="card-body">
@@ -535,7 +525,7 @@
                     <div class="col-lg-10">
                         <div class="text-center">
                             <div class="heading">
-                                <h2 class="mb-0">Frequently Asked Quetions</h2>
+                                <h2 class="mb-0">Часто задаваемые вопросы</h2>
                                 <div class="box first">
                                 </div>
                             </div>
@@ -548,19 +538,19 @@
                             <li class="nav-item" role="presentation">
                                 <a href="#pills-genarel" class="nav-link" id="pills-genarel-tab" data-bs-toggle="pill" role="tab" 
                                 aria-controls="pills-genarel" aria-selected="true">
-                                    <h5 class="mb-0">General Questions</h5>
+                                    <h5 class="mb-0">Частые вопросы</h5>
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#pills-privacy_policy" class="nav-link active" id="pills-privacy_policy-tab" data-bs-toggle="pill"
                                  role="tab" aria-controls="pills-privacy_policy" aria-selected="false">
-                                    <h5 class="mb-0">Privacy Policy</h5>
+                                    <h5 class="mb-0">Политика конфиденциальности</h5>
                                 </a>
                               </li>
                               <li class="nav-item" role="presentation">
                                 <a href="#pills-pricing_plan" class="nav-link" id="pills-teachers-tab" data-bs-toggle="pill"
                                  role="tab" aria-controls="pills-pricing_plan" aria-selected="false">
-                                    <h5 class="mb-0">Pricing & Plans</h5>
+                                    <h5 class="mb-0">Расценки</h5>
                                 </a>
                               </li>
                           </ul>
@@ -894,6 +884,95 @@
             <i class="mdi mdi-arrow-up"></i>
         </button>
         <!--end back-to-top-->
+    </div>
+
+    <div sec:authorize="hasRole('ROLE_EMPLOYEE')">
+    <!-- START EMPLOYEE FOOTER -->
+        <div class="container" style="background-color: #333; color: #fff;">
+            <div class="row justify-content-center" style="margin-top: 30px; background-color: #333; color: #fff;">
+                <div class="col-lg-6 col-sm-10 text-center">
+                    <a href="javascript:void(0)"><img src="../content/images/logo-dark.png" height="30" alt=""></a>
+                    <p class="mx-auto mt-sm-4">Obviously I'm a Web Designer. Experienced with all stages of the development cycle for dynamic web projects.</p>
+                    <ul class="list-unstyled mb-0 mt-3 social-icon">
+                        <li class="list-inline-item">
+                            <div data-aos="fade-up" data-aos-duration="800">
+                                <div class="icon-text">
+                                    <div class="icon facebook">
+                                        <div class="tooltip">Facebook</div>
+                                        <span><i class="mdi mdi-facebook"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-inline-item">
+                            <div data-aos="fade-up" data-aos-duration="1200">
+                                <div class="icon-text">
+                                    <div class="icon twitter">
+                                        <div class="tooltip">Twitter</div>
+                                        <span><i class="mdi mdi-twitter"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-inline-item">
+                            <div data-aos="fade-up" data-aos-duration="1600">
+                                <div class="icon-text">
+                                    <div class="icon instagram">
+                                        <div class="tooltip">Instagram</div>
+                                        <span><i class="mdi mdi-instagram"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-inline-item">
+                            <div data-aos="fade-up" data-aos-duration="2000">
+                                <div class="icon-text">
+                                    <div class="icon github">
+                                        <div class="tooltip">Github</div>
+                                        <span><i class="mdi mdi-github"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-inline-item">
+                            <div data-aos="fade-up" data-aos-duration="2400">
+                                <div class="icon-text">
+                                    <div class="icon youtube">
+                                        <div class="tooltip">Youtube</div>
+                                        <span><i class="mdi mdi-youtube"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div><!--end col-->
+            </div><!--end row-->
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="text-center mt-3">
+                        <ul class="list-unstyled mb-0">
+                            <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                <a class="text-black" href="javascript:void(0)">Home</a>
+                            </li>
+                            <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                <a class="text-black" href="javascript:void(0)">About us</a>
+                            </li>
+                            <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                <a class="text-black" href="javascript:void(0)">Order</a>
+                            </li>
+                            <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                <a class="text-black" href="javascript:void(0)">Member</a>
+                            </li>
+                            <li class="list-inline-item mx-lg-3 m-2 mb-0">
+                                <a class="text-black" href="javascript:void(0)">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- end col-->
+            </div><!-- end row-->
+        </div><!--end container-->
+    <!-- END EMPLOOYEE FOOTER -->
+    </div>
 
         <!--Custom js-->
         <script src="../content/js/counter.js"></script>

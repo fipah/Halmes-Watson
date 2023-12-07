@@ -18,6 +18,7 @@ public class OrderDTO {
     String clientName;
     String description;
     Long price;
+    String service;
 
     OrderStatusEnum status;
 

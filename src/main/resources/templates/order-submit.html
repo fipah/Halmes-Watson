@@ -79,7 +79,7 @@
                             <div class="form-group pl-1">
                                 <label class="form-label">Выберите услугу:</label>
                                 <select class="browser-default custom-select mb-4" id="select" th:field="*{service}">
-                                    <option th:each="service: ${services}" th:value="${service.id}" th:text="${service.name} + ' Цена: ' + ${service.price}"></option>
+                                    <option th:each="service: ${services}" th:value="${service.name}" th:text="${service.name} + ' Цена: ' + ${service.price}"></option>
                                 </select>
                             </div>
 
