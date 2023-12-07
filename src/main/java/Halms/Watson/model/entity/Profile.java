@@ -27,4 +27,8 @@ public class Profile {
     String city;
 
     String phoneNumber;
+
+    byte[] avatar;
+
+    String avatarContentType;
 }

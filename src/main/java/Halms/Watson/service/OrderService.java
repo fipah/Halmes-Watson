@@ -4,11 +4,13 @@ import Halms.Watson.model.dto.Clients;
 import Halms.Watson.model.dto.OrderDTO;
 import Halms.Watson.model.entity.Orders;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderService {
 
-    void createOrder(Clients clients);
+    void createOrder(Clients clients) throws IOException;
 
     List<OrderDTO> getAllOrders();
 
@@ -23,4 +25,6 @@ public interface OrderService {
     void deleteByIdAndUserId(Long id, String userId);
 
     void deleteById(Long id);
+
+    Optional<Orders> findById(Long id);
 }

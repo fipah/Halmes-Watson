@@ -1,7 +1,8 @@
 package Halms.Watson.controller;
 
+import Halms.Watson.constants.ContentTypeConsts;
 import Halms.Watson.model.Role;
-import Halms.Watson.model.dto.OrderDTO;
+import Halms.Watson.model.dto.ProfileDto;
 import Halms.Watson.model.entity.Profile;
 import Halms.Watson.model.entity.SecretAnswer;
 import Halms.Watson.model.entity.Users;
@@ -9,12 +10,9 @@ import Halms.Watson.repository.OrderRepository;
 import Halms.Watson.repository.ProfileRepository;
 import Halms.Watson.repository.SecretAnswerRepository;
 import Halms.Watson.repository.UserRepository;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,11 +20,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 // контроллеры для фронта
@@ -75,7 +74,7 @@ public class HomeController {
     }
 
     @PostMapping("/edit-profile")
-    public String editProfile(Profile profile) {
+    public String editProfile(ProfileDto profile) throws IOException {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();
         Profile users = profileRepository.findByUsername(username).get();
@@ -83,6 +82,15 @@ public class HomeController {
         users.setAddress(profile.getAddress());
         users.setPhoneNumber(profile.getPhoneNumber());
         users.setFullName(profile.getFullName());
+        MultipartFile avatar = profile.getAvatar();
+        if (Objects.nonNull(avatar)) {
+            String contentType = avatar.getContentType();
+            if (ContentTypeConsts.allowedContentTypes.contains(contentType)) {
+                users.setAvatar(avatar.getBytes());
+                users.setAvatarContentType(contentType);
+            }
+
+        }
         profileRepository.save(users);
         return "redirect:profile";
     }

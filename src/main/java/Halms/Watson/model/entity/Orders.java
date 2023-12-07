@@ -41,4 +41,8 @@ public class Orders {
 
     @ManyToOne
     Service service;
+
+    byte[] confirmationPhoto;
+
+    String confirmationPhotoContentType;
 }

@@ -6,12 +6,21 @@ import Halms.Watson.model.entity.Users;
 import Halms.Watson.repository.ProfileRepository;
 import Halms.Watson.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,10 +37,21 @@ public class UserController {
 
     }
 
-//    @PostMapping("/agoga")
-//    void createUser(@RequestB) {
-//
-//    }
+    @GetMapping("/avatar")
+    ResponseEntity<Resource> getCurrentUserAvatar() {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<Profile> byUsername = profileRepository.findByUsername(principal.getUsername());
+        if (byUsername.isEmpty()) {
+            return null;
+        }
+        Profile profile = byUsername.get();
+        if (Objects.isNull(profile.getAvatar())) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(profile.getAvatarContentType()))
+                        .body(new ByteArrayResource(profile.getAvatar()));
+    }
 
 
 

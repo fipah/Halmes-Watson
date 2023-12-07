@@ -37,6 +37,7 @@ public class WebSecurityConfig {
                                 .requestMatchers("/recoverypage").permitAll()
                                 .requestMatchers("/v1/users/create-users").permitAll()
                                 .requestMatchers("/login-error").permitAll()
+                                .requestMatchers("/orders/{id}/photo").hasAnyRole("admin")
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")

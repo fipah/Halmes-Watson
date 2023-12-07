@@ -1,5 +1,6 @@
 package Halms.Watson.service.impl;
 
+import Halms.Watson.constants.ContentTypeConsts;
 import Halms.Watson.model.dto.Clients;
 import Halms.Watson.model.dto.EmployeeDTO;
 import Halms.Watson.model.dto.OrderDTO;
@@ -14,7 +15,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -33,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public void createOrder(Clients clients) {
+    public void createOrder(Clients clients) throws IOException {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();
         Optional<Users> byUsername = userRepository.findByUsername(username);
@@ -48,6 +51,15 @@ public class OrderServiceImpl implements OrderService {
         orders.setClientName(users.getName());
         orders.setPrice(null);
         orders.setDescription(clients.getDescription());
+        MultipartFile confirmationPhoto = clients.getConfirmationPhoto();
+        if (Objects.nonNull(confirmationPhoto)) {
+            String contentType = confirmationPhoto.getContentType();
+            if (ContentTypeConsts.allowedContentTypes.contains(contentType)) {
+                orders.setConfirmationPhoto(confirmationPhoto.getBytes());
+                orders.setConfirmationPhotoContentType(contentType);
+            }
+
+        }
         orderRepository.save(orders);
     }
 
@@ -134,5 +146,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteById(Long id) {
         orderRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Orders> findById(Long id) {
+        return orderRepository.findById(id);
     }
 }

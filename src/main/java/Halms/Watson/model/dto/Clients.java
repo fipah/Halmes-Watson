@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -14,4 +15,5 @@ public class Clients {
     String service;
     Long price;
     Long serviceId;
+    MultipartFile confirmationPhoto;
 }
