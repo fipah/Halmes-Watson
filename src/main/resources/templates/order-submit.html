@@ -74,7 +74,7 @@
                         <h2 class="form-title">Создание заявки</h2>
                         <p class="justify text-muted">Have an enquiry or would like to give us feedback?<br>Fill out the form below to contact our team.</p>
 
-                        <form th:action="@{'/orders/order-submit-action'}" th:object="${client}" method="post">
+                        <form th:action="@{'/orders/order-submit-action'}" th:object="${client}" enctype="multipart/form-data" method="post">
 
                             <div class="form-group pl-1">
                                 <label class="form-label">Выберите услугу:</label>
@@ -86,8 +86,9 @@
                             <div class="form-group pl-1">
                                 <label class="form-label">Описание заказа: </label>
                                 <textarea class="form-control" rows="5" th:field="*{description}"></textarea>
-
-
+                            </div>
+                            <div>
+                            <input class="btn btn-primary" type="file" th:field="*{confirmationPhoto}" name="avatar" accept="image/*">
                             </div>
                             <div class="row">
                                 <div class="col-md-3 offset-md-9"><button type="submit" class="btn btn-primary">Send</button></div>

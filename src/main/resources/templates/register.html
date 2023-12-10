@@ -19,7 +19,11 @@
     <!-- css -->
     <link rel="stylesheet" href="../content/css/style.min.css" type="text/css" />
 
-
+<style>.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}</style>
 </head>
 <body class="vh-100 bg-account-pages">
 <div class="container">
@@ -38,14 +42,14 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-2">
-                                    <label class="mb-2" for="fullName">Ваше Имя:</label>
+                                    <label class="mb-2" for="fullName">Ваше ваше ФИО:</label>
                                     <input type="text" class="form-control" placeholder="Имя" name = "fullName" id="fullName" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-2">
                                         <label class="mb-2" for="username">Придумайте логин:</label>
-                                        <input type="text" class="form-control" name="username" id="username" placeholder="Логин">
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Логин" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -58,13 +62,14 @@
                                 <div class="col-12">
                                     <div class="mb-2">
                                         <label class="mb-2" for="password">Придумайте пароль:</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Пароль">
+                                        <input type="password" class="form-control" name="password" title="обосрись" id="password" placeholder="Пароль" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,69}$">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-2">
                                         <label class="mb-2" for="confirmPassword">Подтвердите пароль:</label>
                                         <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Пароль">
+                                        <span id="passwordMismatch" class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -73,21 +78,14 @@
                                 <input type="text" class="form-control" placeholder="Ответ:" name = "secret" id="secret" required >
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="auth-remember-check">
-                                        <label class="form-check-label" for="auth-remember-check">Запомнить меня</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="text-sm-end">
                                         <a th:href="@{'/recoverypage'}" class="text-muted fs-13"><i class="mdi mdi-lock me-1"></i> Забыли пароль?</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <button class="btn btn-primary w-100" type="submit">Зарегистрироваться</button>
+                                <button class="btn btn-primary w-100" type="submit" onclick="validatePasswords()">Зарегистрироваться</button>
                             </div>
                         </form>
                         <div class="mt-4 text-center">
@@ -106,5 +104,20 @@
     </div>
     <!-- end row -->
 </div>
+<script>
+    function validatePasswords() {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        var passwordMismatch = document.getElementById('passwordMismatch');
+
+        if (password !== confirmPassword) {
+            passwordMismatch.textContent = 'Пароли не совпадают.';
+        } else {
+            // Если пароли совпадают, сбросить сообщение об ошибке
+            passwordMismatch.textContent = '';
+            // Тут можно добавить логику для отправки формы или выполнения других действий
+        }
+    }
+</script>
 </body>
 </html>

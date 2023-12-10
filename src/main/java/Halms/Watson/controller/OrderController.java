@@ -98,13 +98,18 @@ public class OrderController {
         orderService.approveOrder(id, principal.getUsername());
         return "redirect:../orders-employee";
     }
+    @PostMapping("/{id}/process")
+    String processOrder(@PathVariable Long id){
+        Optional<Orders> byId = orderService.findById(id);
+        return "";
+    }
 
     @PutMapping("/{id}/complete")
     void completeOrder(@PathVariable Long id) {
         orderService.completeOrder(id);
     }
 
-    @GetMapping("{id}/photo")
+    @GetMapping("/{id}/photo")
     ResponseEntity<Resource> getOrderConfirmationPhoto(@PathVariable Long id) {
         Optional<Orders> order = orderService.findById(id);
         if (order.isEmpty()) {
@@ -118,6 +123,4 @@ public class OrderController {
                 .contentType(MediaType.parseMediaType(profile.getConfirmationPhotoContentType()))
                 .body(new ByteArrayResource(profile.getConfirmationPhoto()));
     }
-
-
 }

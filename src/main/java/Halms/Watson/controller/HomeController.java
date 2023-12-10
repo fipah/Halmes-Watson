@@ -68,6 +68,12 @@ public class HomeController {
         return "recoverypage";
     }
 
+    @GetMapping("/admin")
+    public String admin(Model model){
+        model.addAttribute("orders", orderRepository.getByStatus);
+        return "admin";
+    }
+
     @GetMapping("/edit-profile")
     public String editProfile(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -106,11 +112,11 @@ public class HomeController {
         String username = user.getUsername();
         Profile users = profileRepository.findByUsername(username).get();
         Collection<GrantedAuthority> authorities = user.getAuthorities();
-        if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("EMPLOYEE"))) {
+        if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_EMPLOYEE"))) {
             Long salary = orderRepository.countPaymentForLastSevenDaysWithBonuses(username);
             model.addAttribute("salary", salary);
-            Long inProgressCount = orderRepository.getCountByStatusAndEmployeeUsername(OrderStatusEnum.IN_PROGRESS, username);
-            model.addAttribute("inProgressCount", inProgressCount);
+            Long inProgressCount = orderRepository.getCountByStatusAndEmployeeUsername(OrderStatusEnum.IN_PROGRESS.toString(), username);
+            model.addAttribute("inProgressCount", inProgressCount.toString());
         }
         model.addAttribute("user", users);
         return "profile";
