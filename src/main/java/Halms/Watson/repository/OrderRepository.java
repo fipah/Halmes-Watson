@@ -38,5 +38,5 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
     Long getCountByStatusAndEmployeeUsername(String orderStatusEnum, String username);
 
     @Query("from Orders o where o.orderStatus.code = :orderStatusEnum")
-    List<Orders> getByStatus(String orderStatusEnum);
+    List<Orders> getByStatus(OrderStatusEnum orderStatusEnum);
 }
