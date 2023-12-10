@@ -1,6 +1,7 @@
 package Halms.Watson.repository;
 
 import Halms.Watson.model.entity.Orders;
+import Halms.Watson.model.enums.OrderStatusEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -35,4 +36,7 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
     select count(*) from orders where employee_id = (select id from employee) and order_status_id = (select id from order_status)
 """, nativeQuery = true)
     Long getCountByStatusAndEmployeeUsername(String orderStatusEnum, String username);
+
+    @Query("from Orders o where o.orderStatus.code = :orderStatusEnum")
+    List<Orders> getByStatus(String orderStatusEnum);
 }

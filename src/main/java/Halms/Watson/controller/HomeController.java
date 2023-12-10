@@ -70,7 +70,7 @@ public class HomeController {
 
     @GetMapping("/admin")
     public String admin(Model model){
-        model.addAttribute("orders", orderRepository.getByStatus);
+        model.addAttribute("orders", orderRepository.getByStatus(OrderStatusEnum.PROCESSING.toString()));
         return "admin";
     }
 
