@@ -152,4 +152,9 @@ public class OrderServiceImpl implements OrderService {
     public Optional<Orders> findById(Long id) {
         return orderRepository.findById(id);
     }
+
+    @Override
+    public void save(Orders orders) {
+        orderRepository.save(orders);
+    }
 }

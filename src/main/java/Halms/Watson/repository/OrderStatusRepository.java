@@ -9,4 +9,6 @@ public interface OrderStatusRepository extends JpaRepository<OrderStatus, Long> 
 
     @Query("select os from OrderStatus os where os.code = :code")
     OrderStatus getStatusByCode(OrderStatusEnum code);
+
+    OrderStatus getByCode(OrderStatusEnum orderStatusEnum);
 }

@@ -6,6 +6,8 @@ import Halms.Watson.model.entity.Orders;
 import Halms.Watson.model.entity.Profile;
 import Halms.Watson.model.entity.Service;
 import Halms.Watson.model.entity.Users;
+import Halms.Watson.model.enums.OrderStatusEnum;
+import Halms.Watson.repository.OrderStatusRepository;
 import Halms.Watson.repository.ServiceRepository;
 import Halms.Watson.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +38,7 @@ public class OrderController {
 
     private final OrderService orderService;
     private final ServiceRepository serviceRepository;
+    private final OrderStatusRepository orderStatusRepository;
 
     @RequestMapping(value = "/order-submit-action", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public String CreateOrder (@ModelAttribute("client") Clients client, BindingResult bindingResult, ModelMap model) throws IOException {
@@ -101,7 +104,21 @@ public class OrderController {
     @PostMapping("/{id}/process")
     String processOrder(@PathVariable Long id){
         Optional<Orders> byId = orderService.findById(id);
-        return "";
+        if (byId.isPresent()) {
+            Orders orders = byId.get();
+            orders.setOrderStatus(orderStatusRepository.getByCode(OrderStatusEnum.NEW));
+            orderService.save(orders);
+        }
+        return "redirect:../admin";
+    }
+
+    @PostMapping("/{id}/delete")
+    String deleteAgogaOrder(@PathVariable Long id) {
+        Optional<Orders> byId = orderService.findById(id);
+        if (byId.isPresent()) {
+            orderService.deleteById(id);
+        }
+        return "redirect:../admin";
     }
 
     @PutMapping("/{id}/complete")
