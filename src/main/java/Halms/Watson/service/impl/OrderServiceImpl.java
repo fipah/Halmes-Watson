@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
         System.out.println(clients.getService());
         Halms.Watson.model.entity.Service service = serviceRepository.findByName(clients.getService());
         orders.setService(service);
-        OrderStatus statusByCode = orderStatusRepository.getStatusByCode(OrderStatusEnum.NEW);
+        OrderStatus statusByCode = orderStatusRepository.getStatusByCode(OrderStatusEnum.PROCESSING);
         orders.setOrderStatus(statusByCode);
         orders.setClientName(users.getName());
         orders.setPrice(null);
