@@ -197,6 +197,24 @@ public class HomeController {
         return "recoverypage";
     }
 
+
+    @PostMapping("/changepassword")
+    public String changePassword(@RequestParam Map<String, String> body) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        Optional<Users> byUsername = userRepository.findByUsername(username);
+        if (!body.get("password").equals(body.get("confirmPassword"))) {
+            return "redirect:/user-recovery-password";
+        }
+        Users users = byUsername.get();
+        SecretAnswer answer = users.getAnswer();
+        if (answer.getAnswer().equals(body.get("secret")));
+        String password = body.get("password");
+        users.setPassword(passwordEncoder.encode(password));
+        userRepository.save(users);
+        return "redirect:/profile";
+    }
+
     @PostMapping(
             value = "/register/employee",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = {
