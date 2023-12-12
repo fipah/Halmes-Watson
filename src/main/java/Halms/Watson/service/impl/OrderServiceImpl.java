@@ -6,6 +6,7 @@ import Halms.Watson.model.dto.EmployeeDTO;
 import Halms.Watson.model.dto.OrderDTO;
 import Halms.Watson.model.entity.OrderStatus;
 import Halms.Watson.model.entity.Orders;
+import Halms.Watson.model.entity.Profile;
 import Halms.Watson.model.entity.Users;
 import Halms.Watson.model.enums.OrderStatusEnum;
 import Halms.Watson.repository.*;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
+    private final ProfileRepository profileRepository;
     private final OrderRepository orderRepository;
     private final OrderStatusRepository orderStatusRepository;
     private final EmployeeRepository employeeRepository;
@@ -65,20 +67,21 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDTO> getAllOrders() {
-        return orderRepository.findAll().stream().map(OrderServiceImpl::convertOrderToDto).collect(Collectors.toList());
+        return orderRepository.findAll().stream().map(this::convertOrderToDto).collect(Collectors.toList());
     }
 
-    private static OrderDTO convertOrderToDto(Orders orders) {
+    private OrderDTO convertOrderToDto(Orders orders) {
         if (Objects.isNull(orders)) {
             return null;
         }
         OrderDTO dto = new OrderDTO();
         dto.setId(orders.getId());
         dto.setDescription(orders.getDescription());
-        dto.setPrice(orders.getPrice());
+        dto.setPrice(orders.getService().getPrice());
         dto.setService(orders.getService().getName());
         dto.setStatus(orders.getOrderStatus().getCode());
-        dto.setClientName(orders.getUser().getName());
+        Long userId = orders.getUser().getId();
+        dto.setClientName(profileRepository.findById(userId).orElse(emptyProfile()).getFullName());
         EmployeeDTO employeeDTO = new EmployeeDTO();
         if (Objects.nonNull(orders.getEmployee())) {
             employeeDTO.setId(orders.getEmployee().getId());
@@ -89,6 +92,12 @@ public class OrderServiceImpl implements OrderService {
         dto.setCompletedDate(orders.getCompletedDate());
         dto.setCreatedDate(orders.getCreatedDate());
         return dto;
+    }
+
+    private Profile emptyProfile() {
+        Profile profile = new Profile();
+        profile.setFullName("");
+        return profile;
     }
 
     @Override
@@ -128,7 +137,7 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDTO> getAllOrdersByUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();
-        return orderRepository.findAllByUsername(username).stream().map(OrderServiceImpl::convertOrderToDto).collect(Collectors.toList());
+        return orderRepository.findAllByUsername(username).stream().map(this::convertOrderToDto).collect(Collectors.toList());
     }
 
     @Override
