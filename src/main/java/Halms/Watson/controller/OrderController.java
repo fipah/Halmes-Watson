@@ -1,5 +1,6 @@
 package Halms.Watson.controller;
 
+import Halms.Watson.model.dto.ClientOrderDto;
 import Halms.Watson.model.dto.Clients;
 import Halms.Watson.model.dto.OrderDTO;
 import Halms.Watson.model.entity.Orders;
@@ -67,7 +68,7 @@ public class OrderController {
 
     @RequestMapping("/client-order")
     String getClientOrders(Model model ) {
-        List<OrderDTO> allOrders = orderService.getAllOrdersByUser();
+        List<ClientOrderDto> allOrders = orderService.getAllOrdersByUser();
         model.addAttribute("orders", allOrders);
         return "client-order";
     }

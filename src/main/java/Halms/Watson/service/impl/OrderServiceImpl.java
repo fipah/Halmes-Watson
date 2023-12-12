@@ -1,6 +1,7 @@
 package Halms.Watson.service.impl;
 
 import Halms.Watson.constants.ContentTypeConsts;
+import Halms.Watson.model.dto.ClientOrderDto;
 import Halms.Watson.model.dto.Clients;
 import Halms.Watson.model.dto.EmployeeDTO;
 import Halms.Watson.model.dto.OrderDTO;
@@ -134,10 +135,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDTO> getAllOrdersByUser() {
+    public List<ClientOrderDto> getAllOrdersByUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();
-        return orderRepository.findAllByUsername(username).stream().map(this::convertOrderToDto).collect(Collectors.toList());
+        return orderRepository.findAllByUsername(username).stream().map(this::convertToClientOrderDto).collect(Collectors.toList());
+    }
+
+    private ClientOrderDto convertToClientOrderDto(Orders order) {
+        ClientOrderDto orderDTO =(ClientOrderDto) convertOrderToDto(order);
+        Long id = order.getEmployee().getId();
+        if (Objects.isNull(orderDTO)) {
+            return null;
+        }
+        orderDTO.setEmployeeName(profileRepository.findById(id).orElse(emptyProfile()).getFullName());
     }
 
     @Override

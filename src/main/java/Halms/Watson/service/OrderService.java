@@ -1,5 +1,6 @@
 package Halms.Watson.service;
 
+import Halms.Watson.model.dto.ClientOrderDto;
 import Halms.Watson.model.dto.Clients;
 import Halms.Watson.model.dto.OrderDTO;
 import Halms.Watson.model.entity.Orders;
@@ -20,7 +21,7 @@ public interface OrderService {
 
     Orders completeOrder(Long id);
 
-    List<OrderDTO> getAllOrdersByUser();
+    List<ClientOrderDto> getAllOrdersByUser();
 
     void deleteByIdAndUserId(Long id, String userId);
 
