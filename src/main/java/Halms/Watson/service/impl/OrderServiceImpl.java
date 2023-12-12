@@ -141,13 +141,30 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAllByUsername(username).stream().map(this::convertToClientOrderDto).collect(Collectors.toList());
     }
 
-    private ClientOrderDto convertToClientOrderDto(Orders order) {
-        ClientOrderDto orderDTO =(ClientOrderDto) convertOrderToDto(order);
-        Long id = order.getEmployee().getId();
-        if (Objects.isNull(orderDTO)) {
+    private ClientOrderDto convertToClientOrderDto(Orders orders) {
+        if (Objects.isNull(orders)) {
             return null;
         }
-        orderDTO.setEmployeeName(profileRepository.findById(id).orElse(emptyProfile()).getFullName());
+        ClientOrderDto dto = new ClientOrderDto();
+        dto.setId(orders.getId());
+        dto.setDescription(orders.getDescription());
+        dto.setPrice(orders.getService().getPrice());
+        dto.setService(orders.getService().getName());
+        dto.setStatus(orders.getOrderStatus().getCode());
+        Long userId = orders.getUser().getId();
+        dto.setClientName(profileRepository.findById(userId).orElse(emptyProfile()).getFullName());
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        if (Objects.nonNull(orders.getEmployee())) {
+            employeeDTO.setId(orders.getEmployee().getId());
+            employeeDTO.setName(orders.getEmployee().getName());
+
+            dto.setAssignedEmployee(employeeDTO);
+        }
+        dto.setCompletedDate(orders.getCompletedDate());
+        dto.setCreatedDate(orders.getCreatedDate());
+        Long id = orders.getEmployee().getId();
+        dto.setEmployeeName(profileRepository.findById(id).orElse(emptyProfile()).getFullName());
+        return dto;
     }
 
     @Override
