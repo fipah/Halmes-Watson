@@ -162,8 +162,10 @@ public class OrderServiceImpl implements OrderService {
         }
         dto.setCompletedDate(orders.getCompletedDate());
         dto.setCreatedDate(orders.getCreatedDate());
-        Long id = orders.getEmployee().getId();
-        dto.setEmployeeName(profileRepository.findById(id).orElse(emptyProfile()).getFullName());
+        if (Objects.nonNull(orders.getEmployee())){
+            Long id = orders.getEmployee().getId();
+            dto.setEmployeeName(profileRepository.findById(id).orElse(emptyProfile()).getFullName());
+        }
         return dto;
     }
 

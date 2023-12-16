@@ -74,6 +74,11 @@ public class HomeController {
         return "admin";
     }
 
+    @GetMapping("/user-recovery-password")
+    public String userRecoveryPassword(){
+        return "user-recovery-password";
+    }
+
     @GetMapping("/edit-profile")
     public String editProfile(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -232,18 +237,4 @@ public class HomeController {
             userRepository.save(user);
         }
     }
-
-//    private String getErrorMessage(HttpServletRequest request, String key) {
-//        Exception exception = (Exception) request.getSession().getAttribute(key);
-//        String error = "Неправильный логин или пароль";
-//        if (exception instanceof BadCredentialsException) {
-//            error = "Invalid username and password!";
-//        } else if (exception instanceof LockedException) {
-//            error = exception.getMessage();
-//        } else {
-//            error = "Invalid username and password!";
-//        }
-//        return error;
-//    }
-
 }

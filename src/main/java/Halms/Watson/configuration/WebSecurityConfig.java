@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -39,8 +40,10 @@ public class WebSecurityConfig {
                                 .requestMatchers("/recoverypage").permitAll()
                                 .requestMatchers("/v1/users/create-users").permitAll()
                                 .requestMatchers("/login-error").permitAll()
-                                .requestMatchers("/orders/{id}/photo").hasAnyRole("admin")
+                                .requestMatchers("/orders/{id}/photo").hasAnyRole("ADMIN")
+                                .requestMatchers("/admin").hasAnyRole("ADMIN")
                                 .anyRequest().authenticated())
+                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()
@@ -63,30 +66,11 @@ public class WebSecurityConfig {
         return authProvider;
     }
 
-//    @Bean UserDetailsManager userDetailsService() {
-//        UserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
-//        try {
-//            Users users = new Users();
-//            users.setUsername("admin");
-//            users.setPassword(bCryptPasswordEncoder().encode("agoga1322"));
-//            users.setRole(Role.ROLE_ADMIN);
-//            HolmesUserDetails holmesUserDetails = new HolmesUserDetails(users);
-//            userDetailsManager.createUser(holmesUserDetails);
-//    }
-//        catch (Exception e) {
-//            System.out.println(e);
-//        }
-//        return userDetailsManager;
-//    }
 
     public void configureGlobal(AuthenticationManagerBuilder auth, HolmesUserDetailsService userService, PasswordEncoder passwordEncoder) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
 
-//    @Bean
-//    public void configureGlobal(AuthenticationManagerBuilder auth) {
-//        auth.authenticationProvider(daoAuthenticationProvider());
-//    }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

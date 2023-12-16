@@ -21,9 +21,6 @@ public class Users {
 
     String password;
 
-    //    @ElementCollection
-//    @JoinTable(name = "authorities", joinColumns = {@JoinColumn(name = "username")})// use default table (PERSON_NICKNAMES)
-//            @Column(name = "authority")
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;

@@ -38,7 +38,6 @@ public class Orders {
     @ManyToOne
     Users user;
 
-
     @ManyToOne
     Service service;
 

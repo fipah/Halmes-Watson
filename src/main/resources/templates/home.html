@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head>
         <meta charset="utf-8" />
-        <title>Mito - Bootstrap5 Responsive Landing</title>
+        <title>Главная страница</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Premium Bootstrap v5.1.3 Landing Page Template" />
         <meta name="keywords" content="bootstrap v5.1.3, premium, marketing, multipurpose" />
@@ -38,8 +38,8 @@
             <div class="container">
                 <!-- LOGO -->
                 <a class="navbar-brand text-uppercase" th:href="@{'/'}">
-                    <img class="logo-light" src="../content/images/logo-light.png" alt="" height="24">
-                    <img class="logo-dark" src="../content/images/logo-dark.png" alt="" height="24">
+                    <img class="logo-light" src="../content/images/logo-light.png" alt="" width="220" height="58">
+                    <img class="logo-dark" src="../content/images/logo-dark.png" alt="" width="220" height="58">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -135,13 +135,13 @@
                                 <span class="badge badge-lg bg-soft-primary text-uppercase mb-3">Лучший выбор</span>
                                 <h3 class="head-line text-uppercase">Детективное агенство Holmes & Watson</h3>
                                 <p class="home-caption text-white-50">На рынке уже больше 10 лет. больше 10000 раскрытых дел, Детективное агентство Holmes & Watson работает по всему Казахстану, ближнему и дальнему зарубежью.</p>
-                                <a href="#" class="play-button" data-bs-toggle="modal" data-bs-target="#watchvideomodal">
-                                    <span class="play-icon">
-                                        <i class="mdi mdi-play"></i>
-                                    </span>
-                                </a>
+<!--                                <a href="#" class="play-button" data-bs-toggle="modal" data-bs-target="#watchvideomodal">-->
+<!--                                    <span class="play-icon">-->
+<!--                                        <i class="mdi mdi-play"></i>-->
+<!--                                    </span>-->
+<!--                                </a>-->
                             </div>
-                        </div><!-- end col --> 
+                        </div><!-- end col -->
                     </div><!-- end row -->
                 </div>
 
@@ -154,10 +154,10 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <video id="VisaChipCardVideo" class="video-box" controls>
-                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                                <!--Browser does not support <video> tag -->
-                            </video>
+<!--                            <video id="VisaChipCardVideo" class="video-box" controls>-->
+<!--                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">-->
+<!--                                &lt;!&ndash;Browser does not support <video> tag &ndash;&gt;-->
+<!--                            </video>-->
                         </div>
                     </div>
                 </div><!-- end modal -->
@@ -264,7 +264,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="heading mb-3">
-                            <h2 class="mb-0">our team</h2>
+                            <h2 class="mb-0">Наша команда</h2>
                             <div class="box first">
                             </div>
                         </div>
@@ -291,9 +291,7 @@
                                               <div class="card-body">
                                                   <div class="card-text">
                                                     <h6>Краткая информация</h6>
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-                                                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur 
-                                                        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla</p>
+                                                    <p class="text-muted">Более 15 лет в сфере оперативного расследования и криминалистической экспертизы. Профессионал в области оперативного расследования с богатым опытом работы. Наша команда специализируется на предоставлении высококачественных услуг по расследованию преступлений, поиску пропавших и обеспечению безопасности.</p>
                                                   </div>
                                                   <ul class="inline-item team-icon">
                                                       <li class="list-inline-item">
@@ -336,7 +334,7 @@
                                         <div class="team-img">
                                           <img class="img-fluid" src="../content/images/team/team2.png" alt="">
                                           <div class="img-text">
-                                              <h6>Темирлан Заирова</h6>
+                                              <h6>Темирлан Заиров</h6>
                                               <span class="text-white-50">Следователь</span>
                                           </div>
                                         </div>
@@ -350,10 +348,8 @@
                                           </div>
                                             <div class="card-body">
                                                 <div class="card-text">
-                                                  <h6>Designation</h6>
-                                                  <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
-                                                      laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae 
-                                                      vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit</p>
+                                                  <h6>Краткая информация</h6>
+                                                  <p class="text-muted">Следователь с более чем 10-летним стажем в правоохранительных органах, специализирующийся на расследовании тяжких преступлений. Опытный следователь с успешными расследованиями в своем портфолио. Профессиональный подход, высокий уровень ответственности и этичности.</p>
                                                 </div>
                                                 <ul class="inline-item team-icon">
                                                     <li class="list-inline-item">
@@ -410,10 +406,8 @@
                                           </div>
                                             <div class="card-body">
                                                 <div class="card-text">
-                                                  <h6>Designation</h6>
-                                                  <p class="text-muted">But I must explain to you how all this mistaken idea of denouncing pleasure and 
-                                                      praising pain was born and I will give you a complete account of the system, and expound the actual 
-                                                      teachings of the great explorer of the truth, the master-builder of human happiness. No</p>
+                                                  <h6>Краткая информация</h6>
+                                                  <p class="text-muted">Детектив с более чем 12-летним стажем в частной детективной практике, успешно решающая разнообразные задачи. Детектив с поистине профессиональным подходом к расследованиям. Наша команда предоставляет дискретные и эффективные услуги в сфере частного детективного дела.</p>
                                                 </div>
                                                 <ul class="inline-item team-icon">
                                                     <li class="list-inline-item">
@@ -470,10 +464,8 @@
                                           </div>
                                             <div class="card-body">
                                                 <div class="card-text">
-                                                  <h6>Designation</h6>
-                                                  <p class="text-muted">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. 
-                                                      Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li 
-                                                      grammatica, li pronunciation e li plu commun vocabules. Omnicos directe al desirabilite de</p>
+                                                  <h6>Краткая информация</h6>
+                                                  <p class="text-muted">Сертифицированный полиграфист с более чем 8-летним стажем, проводящий полиграфические исследования в различных областях. Профессиональный полиграфист с многолетним опытом в области выявления лжи. Гарантируем объективность и точность результатов.</p>
                                                 </div>
                                                 <ul class="inline-item team-icon">
                                                     <li class="list-inline-item">
@@ -563,16 +555,12 @@
                                       <div class="accordion-header" id="headingOne1">
                                         <a href="#collapseOne1" class="accordion-button" data-bs-toggle="collapse" 
                                         aria-expanded="true" aria-controls="collapseOne1">
-                                            <h6> <span>1.</span> Where can I get some?</h6>
+                                            <h6> <span>1.</span> Какие услуги предоставляет ваше детективное агентство?</h6>
                                         </a>
                                       </div>
                                       <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1" data-bs-parent="#accordionExampleONE">
                                         <div class="accordion-body">
-                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget 
-                                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus 
-                                                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-                                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, 
-                                                venenatis </p>
+                                            <p class="text-muted">Наше агентство предоставляет широкий спектр услуг, включая сбор информации, анализ доказательств, наблюдение, поиск пропавших лиц, исследование преступлений и многое другое. Мы гарантируем конфиденциальность и профессиональный подход к каждому клиенту. </p>
                                         </div>
                                       </div>
                                     </div>
@@ -580,15 +568,12 @@
                                       <div class="accordion-header" id="headingTwo2">
                                         <a href="#collapseTwo2" class="accordion-button collapsed" data-bs-toggle="collapse" 
                                         aria-expanded="false" aria-controls="collapseTwo2">
-                                        <h6> <span>2.</span>Where does it come from ?</h6>
+                                        <h6> <span>2.</span> Каковы сроки выполнения заказа?</h6>
                                         </a>
                                       </div>
                                       <div id="collapseTwo2" class="accordion-collapse collapse" aria-labelledby="headingTwo2" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p class="text-muted">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, 
-                                                musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation 
-                                                e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi 
-                                                traductores. At solmen va esser necessi far
+                                            <p class="text-muted"> Время выполнения зависит от характера и сложности задачи. Мы стремимся к оперативности и эффективности в решении задач, однако точные сроки могут быть установлены только после более детального изучения конкретного случая.
                                             </p>
                                         </div>
                                       </div>
@@ -597,15 +582,12 @@
                                       <div class="accordion-header" id="headingThree3">
                                         <a href="#collapseThree3" class="accordion-button collapsed" data-bs-toggle="collapse"
                                         aria-expanded="false" aria-controls="collapseThree3">
-                                        <h6> <span>3.</span>Why do we use it ?</h6>
+                                        <h6> <span>3.</span> Как обеспечивается конфиденциальность клиентов?</h6>
                                         </a>
                                       </div>
                                       <div id="collapseThree3" class="accordion-collapse collapse" aria-labelledby="headingThree3" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p class="text-muted">The European languages are members of the same family. Their separate existence is a myth. 
-                                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their 
-                                                pronunciation and their most common words. Everyone realizes why a new common language would be desirable: 
-                                                one could refuse to pay expensive translators. To achieve this</p>
+                                            <p class="text-muted">Мы придаем высший приоритет сохранению конфиденциальности информации наших клиентов. Наши сотрудники обязаны соблюдать строгие этические стандарты, и все данные, полученные в ходе расследования, обрабатываются с максимальной осторожностью. Мы также можем предоставить клиенту необходимые гарантии на бумаге.</p>
                                         </div>
                                       </div>
                                     </div>
@@ -613,15 +595,12 @@
                                         <div class="accordion-header" id="headingfour4">
                                           <a href="#collapsefour4" class="accordion-button collapsed" data-bs-toggle="collapse"
                                           aria-expanded="false" aria-controls="collapsefour4">
-                                          <h6> <span>4.</span>Why do we use it ?</h6>
+                                          <h6> <span>4.</span> Какие средства и технологии используют ваши агенты в работе?</h6>
                                           </a>
                                         </div>
                                         <div id="collapsefour4" class="accordion-collapse collapse" aria-labelledby="headingfour4" data-bs-parent="#accordionExample">
                                           <div class="accordion-body">
-                                              <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
-                                                  there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large 
-                                                  language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. 
-                                                  It is a paradisematic country, in which roasted parts.</p>
+                                              <p class="text-muted">Мы используем современное оборудование и технологии для сбора и анализа информации, в том числе средства видеонаблюдения, технические средства слежения, программы анализа данных и другие инструменты. Все наши агенты проходят обучение и регулярно обновляют свои навыки, чтобы эффективно противостоять современным вызовам в сфере детективной деятельности.</p>
                                           </div>
                                         </div>
                                       </div>
@@ -633,16 +612,12 @@
                                       <div class="accordion-header" id="headingOne">
                                         <a href="#collapseOne" class="accordion-button" data-bs-toggle="collapse"
                                         aria-expanded="true" aria-controls="collapseOne">
-                                            <h6> <span>1.</span> Where can I get some?</h6>
+                                            <h6> <span>1.</span> Сбор и хранение информации</h6>
                                         </a>
                                       </div>
                                       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample1">
                                         <div class="accordion-body">
-                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget 
-                                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus 
-                                                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-                                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, 
-                                                venenatis </p>
+                                            <p class="text-muted">Мы собираем только ту информацию, которая является необходимой для выполнения поставленных перед нами задач. Это включает в себя персональные данные клиентов, а также информацию, полученную в ходе расследовательских процессов. Вся собранная информация хранится с максимальной степенью безопасности и доступа. </p>
                                         </div>
                                       </div>
                                     </div>
@@ -650,15 +625,12 @@
                                       <div class="accordion-header" id="headingTwo">
                                         <a href="#collapseTwo" class="accordion-button collapsed" data-bs-toggle="collapse" 
                                         aria-expanded="false" aria-controls="collapseTwo">
-                                        <h6> <span>2.</span>Where does it come from ?</h6>
+                                        <h6> <span>2.</span> Конфиденциальность клиентов</h6>
                                         </a>
                                       </div>
                                       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p class="text-muted">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, 
-                                                musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation 
-                                                e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi 
-                                                traductores. At solmen va esser necessi far
+                                            <p class="text-muted">Мы строго соблюдаем принцип абсолютной конфиденциальности в отношении всех клиентов. Ни при каких обстоятельствах мы не раскрываем информацию о наших клиентах третьим лицам без их явного согласия. Наши сотрудники подписывают соглашения о неразглашении, и нарушение конфиденциальности является серьезным нарушением этических стандартов.
                                             </p>
                                         </div>
                                       </div>
@@ -667,15 +639,12 @@
                                       <div class="accordion-header" id="headingThree">
                                         <a href="#collapseThree" class="accordion-button collapsed" data-bs-toggle="collapse"
                                         aria-expanded="false" aria-controls="collapseThree">
-                                        <h6> <span>3.</span>Why do we use it ?</h6>
+                                        <h6> <span>3.</span> Использование информации</h6>
                                         </a>
                                       </div>
                                       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p class="text-muted">The European languages are members of the same family. Their separate existence is a myth. 
-                                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their 
-                                                pronunciation and their most common words. Everyone realizes why a new common language would be desirable: 
-                                                one could refuse to pay expensive translators. To achieve this</p>
+                                            <p class="text-muted">Собранная нами информация используется исключительно в целях, оговоренных с клиентом. Мы не используем данные для каких-либо других целей без явного согласия заказчика. Проведение анализа и интерпретация информации осуществляются только с целью выполнения конкретного расследования.</p>
                                         </div>
                                       </div>
                                     </div>
@@ -683,15 +652,12 @@
                                         <div class="accordion-header" id="headingfour">
                                           <a href="#collapsefour" class="accordion-button collapsed" data-bs-toggle="collapse"
                                           aria-expanded="false" aria-controls="collapsefour">
-                                          <h6> <span>4.</span>Why do we use it ?</h6>
+                                          <h6> <span>4.</span> Безопасность данных</h6>
                                           </a>
                                         </div>
                                         <div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="headingfour" data-bs-parent="#accordionExample">
                                           <div class="accordion-body">
-                                              <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
-                                                  there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large 
-                                                  language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. 
-                                                  It is a paradisematic country, in which roasted parts.</p>
+                                              <p class="text-muted">Мы принимаем меры для обеспечения высокого уровня безопасности данных. Это включает в себя использование современных технологий шифрования, защиту от несанкционированного доступа к системам хранения данных и регулярное обновление мер безопасности. В случае завершения расследования или завершения сотрудничества с клиентом, мы уничтожаем все собранные данные в соответствии с законодательством и этическими стандартами.</p>
                                           </div>
                                         </div>
                                       </div>
@@ -703,16 +669,12 @@
                                       <div class="accordion-header" id="headingone">
                                         <a href="#collapseone" class="accordion-button" data-bs-toggle="collapse"
                                         aria-expanded="true" aria-controls="collapseone">
-                                            <h6> <span>1.</span> Where can I get some?</h6>
+                                            <h6> <span>1.</span> Розыск людей - 170.000</h6>
                                         </a>
                                       </div>
                                       <div id="collapseone" class="accordion-collapse collapse show" aria-labelledby="headingone" data-bs-parent="#accordionexampleOnE">
                                         <div class="accordion-body">
-                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget 
-                                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus 
-                                                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-                                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, 
-                                                venenatis </p>
+                                            <p class="text-muted">Наши опытные детективы специализируются на успешном нахождении пропавших лиц. Независимо от причин их исчезновения — семейные разногласия, утеря контакта или другие обстоятельства — мы предлагаем профессиональные услуги по розыску. С использованием передовых методов и технологий, наше агентство гарантирует конфиденциальный и тщательный поиск, направленный на быстрое воссоединение с близкими. Доверьте нам вашу заботу — вернем вам связь с теми, кто важен для вас. </p>
                                         </div>
                                       </div>
                                     </div>
@@ -720,15 +682,12 @@
                                       <div class="accordion-header" id="headingtwo">
                                         <a href="#collapsetwo" class="accordion-button collapsed" data-bs-toggle="collapse"
                                         aria-expanded="false" aria-controls="collapsetwo">
-                                        <h6> <span>2.</span>Where does it come from ?</h6>
+                                        <h6> <span>2.</span>Выявление неверности - 130.000</h6>
                                         </a>
                                       </div>
                                       <div id="collapsetwo" class="accordion-collapse collapse" aria-labelledby="headingtwo" data-bs-parent="#accordionexample">
                                         <div class="accordion-body">
-                                            <p class="text-muted">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, 
-                                                musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation 
-                                                e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi 
-                                                traductores. At solmen va esser necessi far
+                                            <p class="text-muted">Наше детективное агентство предоставляет услуги по выявлению неверности, помогая вам разрешить сомнения и установить истину. С нашим опытным и дискретным персоналом вы можете быть уверены в профессиональном подходе к расследованию. Мы используем передовые технологии и методы, чтобы предоставить вам объективные доказательства, необходимые для принятия важных решений. Доверьтесь нам, и мы поможем вам вернуть ясность в вашу личную жизнь.
                                             </p>
                                         </div>
                                       </div>
@@ -737,15 +696,12 @@
                                       <div class="accordion-header" id="headingthree">
                                         <a href="#collapsethree" class="accordion-button collapsed" data-bs-toggle="collapse"
                                         aria-expanded="false" aria-controls="collapsethree">
-                                        <h6> <span>3.</span>Why do we use it ?</h6>
+                                        <h6> <span>3.</span>Наблюдение и слежка - 100.000</h6>
                                       </a>
                                       </div>
                                       <div id="collapsethree" class="accordion-collapse collapse" aria-labelledby="headingthree" data-bs-parent="#accordionexample">
                                         <div class="accordion-body">
-                                            <p class="text-muted">The European languages are members of the same family. Their separate existence is a myth. 
-                                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their 
-                                                pronunciation and their most common words. Everyone realizes why a new common language would be desirable: 
-                                                one could refuse to pay expensive translators. To achieve this</p>
+                                            <p class="text-muted">Наша команда профессиональных детективов осуществляет эффективное и незаметное наблюдение для решения самых сложных задач. С использованием высокотехнологичного оборудования и навыков опытных агентов, мы предоставляем доверительные услуги по сбору информации, контролю за объектами и выявлению фактов. Наша цель — обеспечить вас объективными данными, необходимыми для принятия обоснованных решений. Доверьтесь нам, и мы обеспечим вас точной и конфиденциальной информацией.</p>
                                         </div>
                                       </div>
                                     </div>
@@ -753,15 +709,12 @@
                                         <div class="accordion-header" id="headingFour">
                                           <a href="#collapseFour" class="accordion-button collapsed" data-bs-toggle="collapse"
                                           aria-expanded="false" aria-controls="collapseFour">
-                                          <h6> <span>4.</span>Why do we use it ?</h6>
+                                          <h6> <span>4.</span>Детектор лжи - 150.000</h6>
                                           </a>
                                         </div>
                                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionexample">
                                           <div class="accordion-body">
-                                              <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
-                                                  there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large 
-                                                  language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. 
-                                                  It is a paradisematic country, in which roasted parts.</p>
+                                              <p class="text-muted">Наше агентство предоставляет профессиональные услуги по использованию детектора лжи для точного определения правдивости высказываний. Специализированные эксперты, обладающие опытом в поле психофизиологии, проводят тщательные и надежные тесты для выявления обмана. Мы гарантируем конфиденциальность и объективность в обработке результатов, предоставляя вам надежные данные для принятия важных решений. Поверьте нашему профессионализму, чтобы получить честные и точные результаты детекции лжи.</p>
                                           </div>
                                         </div>
                                     </div>

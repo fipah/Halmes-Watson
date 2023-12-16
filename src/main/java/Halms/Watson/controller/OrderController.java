@@ -110,7 +110,7 @@ public class OrderController {
             orders.setOrderStatus(orderStatusRepository.getByCode(OrderStatusEnum.NEW));
             orderService.save(orders);
         }
-        return "redirect:../admin";
+        return "redirect:/admin";
     }
 
     @PostMapping("/{id}/delete")
@@ -119,7 +119,7 @@ public class OrderController {
         if (byId.isPresent()) {
             orderService.deleteById(id);
         }
-        return "redirect:../admin";
+        return "redirect:/admin";
     }
 
     @PutMapping("/{id}/complete")
